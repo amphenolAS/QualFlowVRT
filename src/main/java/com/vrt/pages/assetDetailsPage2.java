@@ -63,7 +63,7 @@ public class assetDetailsPage2 extends BaseClass {
 			for (int j = 0; j < SetupTileInfoList.size(); j++) {
 				//System.out.println("setup TileInfo: "+SetupTileInfoList.get(j).getText());
 				String st = SetupTileInfoList.get(j).getText();
-				if (st.contains(SetupName)) {
+				if (st.equals(SetupName)) {
 					SetupTileInfoList.get(j).click();	
 					break;					
 				}
