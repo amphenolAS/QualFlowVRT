@@ -40,10 +40,17 @@ public class assetDetailsPage2 extends BaseClass {
 		InitiateQual_Btn = null;
 		Asset_QualTile = null;
 	}
+	
+	// Click the Setup list panel
+	public void click_SetupListPanel() throws InterruptedException {
+		clickOn(driver.findElementByClassName("ListView"));
+		Thread.sleep(1000);
+	}
 
 	// click on the setup tile
-	public void click_SetupTile() {
+	public void click_SetupTile() throws InterruptedException {
 		clickOn(Asset_SetupTile);
+		Thread.sleep(2000);
 	}
 	
 	//Select the target Setup file
@@ -122,12 +129,6 @@ public class assetDetailsPage2 extends BaseClass {
 		clickOn(InitiateQual_Btn);
 	}
 	
-	// Click the Setup list panel
-	public void click_SetupListPanel() throws InterruptedException {
-		clickOn(driver.findElementByClassName("ListView"));
-		Thread.sleep(1000);
-	}
-	
 	// Enter Value into Sop Protocol Text Box
 	public void Enter_SOPNum(String SOPNum) {
 		WebElement SopNum_Field = driver.findElementByAccessibilityId("SopProtocolTextBox");
@@ -150,8 +151,9 @@ public class assetDetailsPage2 extends BaseClass {
 	}
 
 	// click on the Qual tile
-	public void click_QualTile() {
+	public void click_QualTile() throws InterruptedException {
 		clickOn(Asset_QualTile);
+		Thread.sleep(5000);
 	}
 
 	// Comments given during saving the study for syncIn Setup
@@ -163,7 +165,6 @@ public class assetDetailsPage2 extends BaseClass {
 	
 	// Select any qual file based on study save comment and click on that
 	public void Select_QualFile(String StudyComment) throws InterruptedException, IOException {
-
 		List<WebElement> QUALList = driver.findElementByClassName("ListView")
 				.findElements(By.className("ListViewItem"));
 		// Loop for the different serial number created
@@ -179,7 +180,7 @@ public class assetDetailsPage2 extends BaseClass {
 				String st = QUALInfoList.get(j).getText();
 				if (st.equals(StudyComment)) {
 					QUALInfoList.get(j).click();
-
+					Thread.sleep(2000);
 					break;
 				}
 			}

@@ -125,7 +125,7 @@ public class QualificationProcessTest extends BaseClass {
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 					description = "Qualification process flow")
-	public void QUAL001(String UID, String PW, String Aname, String Sname, String BSIP, String SetupSOP,
+	public void QUAL001(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, String SetupSOP,
 			String StudyTimeInMinutes, String StudySaveComment) throws InterruptedException, IOException, AWTException {
 
 		extentTest = extent.startTest("Qualification process flow");
@@ -188,7 +188,7 @@ public class QualificationProcessTest extends BaseClass {
 		Thread.sleep(30000);  
 
 		QualificationPage.handle_lgrStatusPopup_QualStart();
-		System.out.println("Waiting for the Qual study to run for defined time in minutes...");
+		System.out.println("Waiting for the Qual study to run for "+StudyTimeInMinutes+" minutes...");
 		// Method to Convert study wait time from String to integer and then to seconds
 		// This time is the STudy time wait period
 		int TimeInput = Integer.parseInt(StudyTimeInMinutes);
@@ -205,34 +205,47 @@ public class QualificationProcessTest extends BaseClass {
 		UserLoginPopup(UID, PW);
 
 		MainHubPage = ReadLoggersPage.click_okAndEnterComment(StudySaveComment, UID, PW);
+		System.out.println("Moved to Main Hub Page");
 		assetHubPage = MainHubPage.Click_AssetTile2();
+		System.out.println("Moved to Asset Hub Page");
 		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
-
+		System.out.println("Moved to Targeted Asset "+Aname+" Page");
 		assetDetailsPage.click_QualTile();
+		System.out.println("Moved to Qual tile of the targeted Asset");
 		// sa.assertEquals(assetDetailsPage.qualTile_countdata(), "1", "Fail: Qualtile
 		// is not displaying the count");
 		// System.out.println(assetDetailsPage.qual_StudyFile_Comments_txt());
-		sa.assertEquals(assetDetailsPage.qual_StudyFile_Comments_txt(), StudySaveComment,
-				"Fail: comment  is not displaying in the qual studyfile");
+		//sa.assertEquals(assetDetailsPage.qual_StudyFile_Comments_txt(), StudySaveComment,
+		//		"Fail: comment  is not displaying in the qual studyfile");
 		assetDetailsPage.Select_QualFile(StudySaveComment);
+		System.out.println("Selected the Targeted Qual file under the Asset "+Aname+" details Page for report creation");
 		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
+		System.out.println("Moved to RW file selection Page");
 		RWFileSelctionPage.click_ExportToExcelBtn();
 		Thread.sleep(2000);
 		RWFileSelctionPage.selectFolder(FPath2);
 		Thread.sleep(2000);
-
+		
 		String ActMsg = RWFileSelctionPage.AlertMsg();
 		//System.out.println(ActMsg);
 		String Expmsg = "Spreadsheet generated successfully";
 		sa.assertEquals(ActMsg, Expmsg, "Fail : Spreadsheet has not generated");
-		
+		System.out.println("Spreadsheet generated successfully for the targeted Asset "+Aname);
 		//Closing the App
 		RWFileSelctionPage.rightclickon_RWFSPage();
 		MainHubPage = RWFileSelctionPage.clickHomeIcon();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.ClickCancelBtn();
 		Thread.sleep(5000);
+		try {
+			if (LoginPage.Is_VRTAppLoginScreen_Displayed()) {
+				System.out.println("VRT App is Not Closed");
+			};
+		} catch (Exception e) {
+				System.out.println("VRT App is successfuly Closed");
+		}
 		
+		System.out.println("------------------Run # "+RunNo+" completed---------------");
 		sa.assertAll();
 		
 	}
