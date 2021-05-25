@@ -62,7 +62,7 @@ public class ProgramLoggersPage extends BaseClass {
 		}
 		
 		clickOn(NextButton);
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 		return new QualificationPage();
 	}
 }
