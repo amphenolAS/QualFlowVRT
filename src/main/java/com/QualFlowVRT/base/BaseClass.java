@@ -53,10 +53,10 @@ public class BaseClass {
 			prop = new Properties();
 			//Below Path will be used whle creating an Jar/exe file where the config file will be 
 			//placed present in the jar.exe path location.
-			FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/config.properties");
+			//FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/config.properties");
 
 			//Below Path will be used while executing scripts from Eclipse IDE.
-			//FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/config.properties");
+			FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/config.properties");
 			prop.load(fis);
 			
 		} catch (FileNotFoundException e) {

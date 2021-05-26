@@ -212,6 +212,7 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("Moved to Targeted Asset "+Aname+" Page");
 		assetDetailsPage.click_QualTile();
 		System.out.println("Moved to Qual tile of the targeted Asset");
+		assetDetailsPage.click_QualListPanel();
 		// sa.assertEquals(assetDetailsPage.qualTile_countdata(), "1", "Fail: Qualtile
 		// is not displaying the count");
 		// System.out.println(assetDetailsPage.qual_StudyFile_Comments_txt());
@@ -244,8 +245,9 @@ public class QualificationProcessTest extends BaseClass {
 		} catch (Exception e) {
 				System.out.println("VRT App is successfuly Closed");
 		}
-		
+		System.out.println("**********************************************************");
 		System.out.println("------------------Run # "+RunNo+" completed---------------");
+		System.out.println("**********************************************************");
 		sa.assertAll();
 		
 	}
