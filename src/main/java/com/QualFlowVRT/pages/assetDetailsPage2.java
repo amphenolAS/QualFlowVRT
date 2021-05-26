@@ -153,7 +153,13 @@ public class assetDetailsPage2 extends BaseClass {
 	// click on the Qual tile
 	public void click_QualTile() throws InterruptedException {
 		clickOn(Asset_QualTile);
-		Thread.sleep(5000);
+		Thread.sleep(3000);
+	}
+	
+	// Click the Qual files list panel
+	public void click_QualListPanel() throws InterruptedException {
+		clickOn(driver.findElementByClassName("ListView"));
+		Thread.sleep(1000);
 	}
 
 	// Comments given during saving the study for syncIn Setup
