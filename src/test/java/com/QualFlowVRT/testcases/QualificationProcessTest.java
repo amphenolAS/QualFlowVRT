@@ -66,8 +66,7 @@ public class QualificationProcessTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extent = new ExtentReports(
-				System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "QualificationProcessTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
@@ -119,8 +118,8 @@ public class QualificationProcessTest extends BaseClass {
 		driver.quit();
 	}
 
+	
 	// Test Cases
-
 	// QUAL001-Verify the Qualification process for a 10 mnt study
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -130,11 +129,13 @@ public class QualificationProcessTest extends BaseClass {
 
 		extentTest = extent.startTest("Qualification process flow");
 		SoftAssert sa = new SoftAssert();
-		
+		System.out.println("**********************************************************");
+		System.out.println("------------------Run # "+RunNo+" Started---------------");
+		System.out.println("**********************************************************");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
 		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
 		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
-		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
 		//System.out.println(Path);
 		tu.create_Folder(FPath2);
 				
@@ -231,110 +232,107 @@ public class QualificationProcessTest extends BaseClass {
 		//System.out.println(ActMsg);
 		String Expmsg = "Spreadsheet generated successfully";
 		sa.assertEquals(ActMsg, Expmsg, "Fail : Spreadsheet has not generated");
-		System.out.println("Spreadsheet generated successfully for the targeted Asset "+Aname);
+		System.out.println(ActMsg+" for the targeted Asset "+Aname);
 		//Closing the App
 		RWFileSelctionPage.rightclickon_RWFSPage();
 		MainHubPage = RWFileSelctionPage.clickHomeIcon();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.ClickCancelBtn();
-		Thread.sleep(5000);
-		try {
-			if (LoginPage.Is_VRTAppLoginScreen_Displayed()) {
-				System.out.println("VRT App is Not Closed");
-			};
-		} catch (Exception e) {
-				System.out.println("VRT App is successfuly Closed");
-		}
-		System.out.println("**********************************************************");
+		Thread.sleep(7000);
+		System.out.println("VRT App is successfuly Closed");
+		
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 		System.out.println("------------------Run # "+RunNo+" completed---------------");
-		System.out.println("**********************************************************");
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 		sa.assertAll();
 		
 	}
-	
-	
+
 /*
-	// QUAL002-Verify the Qualification record export
-	@Test(groups = {
-			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, description = "QUAL002-Gereating the Raw Excel report of the Qual Study generated")
-	public void QUAL002(String UID, String PW, String Aname, String Sname, String BSIP, String SetupSOP,
-			String StudyTimeInMinutes, String StudySaveComment) throws InterruptedException, IOException, AWTException {
-		// , String lname , String BSIP
-		extentTest = extent.startTest("QUAL002-Gereating the Raw Excel report of the Qual Study generated");
-		SoftAssert sa = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
-		assetHubPage = MainHubPage.Click_AssetTile();
-		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
-
-		assetDetailsPage.click_QualTile();
-		assetDetailsPage.Select_QualFile(Sname);
-		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
-		RWFileSelctionPage.click_ExportToExcelBtn();
-		Thread.sleep(2000);
-		RWFileSelctionPage.selectFolder();
-		Thread.sleep(2000);
-
-		String ActMsg = RWFileSelctionPage.AlertMsg();
-		// System.out.println(ActMsg);
-		String Expmsg = "Spreadsheet generated successfully";
-		sa.assertEquals(ActMsg, Expmsg, "Fail : Spreadsheet has not generated");
-		sa.assertAll();
-	}
-
 	// Qual Start and log out from VRT application
 	@Test(groups = {
-			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, description = "QUAL001-Verify the Qualification process")
-	public void QUAL003(String UID, String PW, String Aname, String Sname, String BSIP)
+			"Regression" }, dataProvider = "QUALSTART", dataProviderClass = QualificationUtility.class, 
+					description = "QUALSTART- Trigger the Qualification Start process")
+	public void QUAL003(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, String SetupSOP)
 			throws InterruptedException, IOException, AWTException {
 		// , String lname , String BSIP
-		extentTest = extent.startTest("QUAL001-Verify the Qualification process");
+		extentTest = extent.startTest("Start the Qualification Study");
 		SoftAssert sa = new SoftAssert();
+		System.out.println("**********************************************************");
+		System.out.println("------------------Run # "+RunNo+" Started---------------");
+		System.out.println("**********************************************************");
+		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
+		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
+		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"-"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+		//System.out.println(Path);
+		tu.create_Folder(FPath2);
+				
 		MainHubPage = LoginPage.Login(UID, PW);
-		assetHubPage = MainHubPage.Click_AssetTile();
+		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
-
+		Thread.sleep(2000);
+		assetDetailsPage.click_SetupTile();
+		// assetDetailsPage.click_SetupHeaderBlockText();
+		assetDetailsPage.click_SetupListPanel();
 		assetDetailsPage.Click_SetupName(Sname);
 
 		assetDetailsPage.click_InitiateQualBtn();
 
-		SelectBaseStationPage = assetDetailsPage.Enter_SOP("2");
-
-		// SelectBaseStationPage.Click_DiscoverBS();
-		// Thread.sleep(5000);
-		// sa.assertEquals(SelectBaseStationPage.BSListbox_Isdisplayed(), true);
-
+		SelectBaseStationPage = assetDetailsPage.Enter_SOP(SetupSOP);
 		SelectBaseStationPage.Enter_BS_IPAddress(BSIP);
 		SelectBaseStationPage.Enter_Add_btn();
-		Thread.sleep(3000);
-
+		Thread.sleep(2000);
 		SelectBaseStationPage.Select_BSListbox("Ethernet IP-- " + BSIP);
-		// Ethernet IP-- 192.168.99.50
-		// Ethernet IP-- 10.17.18.55
 		SelectLoggersPage = SelectBaseStationPage.Click_ConnectBtn();
+		System.out.println("Moved to Select Loggers Page...");
+		//Conduct Force Idle Operation
 		SelectLoggersPage.click_SelectAllLoggers_Btn();
-
-		MappingSensorsPage = SelectLoggersPage.click_mappingsensorBtn();
-		Thread.sleep(3000);
-
+		SelectLoggersPage.click_ForceIdle_Btn();
+		System.out.println("Force Idle Operation completed...");
+		SelectLoggersPage.click_SelectAllLoggers_Btn();
+		SelectLoggersPage.clickNext_MappingSensorBtn();
+		
+		try {
+			SelectLoggersPage.click_AddEqp();
+			SelectLoggersPage.click_YesTo_BatteryAlert();
+		} catch (Exception e) {
+			System.out.println("No Equipment addition alert message displayed");
+		}
+		
+		MappingSensorsPage = SelectLoggersPage.lgrStatusPopup_wait();
+		System.out.println("Moved to Mapping Sensors Page...");
+		Thread.sleep(2000);
 		MappingSensorsPage.click_btnAutoMap_Btn();
-		MappingSensorsPage.click_SelectAll_checkbox();
+		MappingSensorsPage.sensorAutoMao_operation();
 		ProgramLoggersPage = MappingSensorsPage.click_NextButton_withUnmappedSensors();
+		System.out.println("Moved to Program loggers screen...");
 		QualificationPage = ProgramLoggersPage.click_nextbtn();
-		// sa.assertEquals(QualificationPage.qualificationTitle_Fetch(),"Qualification","fail:
-		// qualification title is not correct");
-		Thread.sleep(2000);
+		System.out.println("Moved to Qualification Page...");
 		QualificationPage.click_Start_qualbtn();
-		Thread.sleep(2000);
+		UserLoginPopup(UID, PW);
+		
+		//This time depends upon how & where are we testing the code.
+		//For Ex: If we run the code in HMI & Device in the same network, then its quite fast and a max of 5 sec is whta is required.
+		//But if we try to connect an HMI & BS which is separate network and connect via VPN, then it takes more waiting time.
+		Thread.sleep(30000);  
+		QualificationPage.handle_lgrStatusPopup_QualStart();		
+		
+		//After Qual is started, move to the Main Hub Page and logout of the app followed by closing it.
 		MainHubPage = QualificationPage.Click_Home_Icon_AppBar();
 		MainHubPage.click_connectBtn();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.ClickCancelBtn();
+		Thread.sleep(7000);
 
-		// Thread.sleep(2000);
-		// QualificationPage.click_AppClose_btn();
+		System.out.println("VRT App is successfuly Closed after Qual study start");
+		
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		System.out.println("------------------Run # "+RunNo+" completed---------------");
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 
 	}
-
+/*
 	// Qual Stop and log out from VRT application
 	@Test(groups = { "Regression" }, description = "QUAL001-Verify the Qualification process")
 	public void QUAL004() throws InterruptedException, IOException, AWTException {
