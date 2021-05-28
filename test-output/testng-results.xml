@@ -1,68 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1145" started-at="2021-05-26T22:29:28 IST" finished-at="2021-05-26T22:29:29 IST">
+  <suite name="Default suite" duration-ms="42794" started-at="2021-05-28T19:47:01 IST" finished-at="2021-05-28T19:47:44 IST">
     <groups>
       <group name="Regression">
-        <method signature="QualificationProcessTest.QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.QualificationProcessTest@38bc8ab5]" name="QUAL001" class="com.QualFlowVRT.testcases.QualificationProcessTest"/>
+        <method signature="HitNTrialTests.QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="QUAL001" class="com.QualFlowVRT.testcases.HitNTrialTests"/>
       </group> <!-- Regression -->
     </groups>
-    <test name="Default test" duration-ms="1145" started-at="2021-05-26T22:29:28 IST" finished-at="2021-05-26T22:29:29 IST">
-      <class name="com.QualFlowVRT.testcases.QualificationProcessTest">
-        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.QualFlowVRT.testcases.QualificationProcessTest@38bc8ab5]" name="PreSetup" is-config="true" duration-ms="152" started-at="2021-05-26T22:29:28 IST" finished-at="2021-05-26T22:29:28 IST">
+    <test name="Default test" duration-ms="42794" started-at="2021-05-28T19:47:01 IST" finished-at="2021-05-28T19:47:44 IST">
+      <class name="com.QualFlowVRT.testcases.HitNTrialTests">
+        <test-method status="PASS" signature="PreSetup()[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="PreSetup" is-config="true" duration-ms="192" started-at="2021-05-28T19:47:01 IST" finished-at="2021-05-28T19:47:01 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PreSetup -->
-        <test-method status="FAIL" signature="QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.QualificationProcessTest@38bc8ab5]" name="QUAL001" duration-ms="680" started-at="2021-05-26T22:29:28 IST" description="Qualification process flow" data-provider="QUAL001" finished-at="2021-05-26T22:29:29 IST">
-          <exception class="org.testng.internal.reflect.MethodMatcherException">
-            <message>
-              <![CDATA[
-[public void com.QualFlowVRT.testcases.QualificationProcessTest.QUAL001(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException,java.awt.AWTException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
-Data provider mismatch
-Method: QUAL001([Parameter{index=0, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=1, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=2, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=3, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=4, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=5, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=6, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=7, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=8, type=java.lang.String, declaredAnnotations=[]}])
-Arguments: [(java.lang.String) 1,(java.lang.String) 111111,(java.lang.String) Asset01,(java.lang.String) setup-1,(java.lang.String) 10.17.18.61,(java.lang.String) Test1,(java.lang.String) 1,(java.lang.String) A-Asset-Test1]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.internal.reflect.MethodMatcherException: 
-[public void com.QualFlowVRT.testcases.QualificationProcessTest.QUAL001(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException,java.awt.AWTException] has no parameters defined but was found to be using a data provider (either explicitly specified or inherited from class level annotation).
-Data provider mismatch
-Method: QUAL001([Parameter{index=0, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=1, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=2, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=3, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=4, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=5, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=6, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=7, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=8, type=java.lang.String, declaredAnnotations=[]}])
-Arguments: [(java.lang.String) 1,(java.lang.String) 111111,(java.lang.String) Asset01,(java.lang.String) setup-1,(java.lang.String) 10.17.18.61,(java.lang.String) Test1,(java.lang.String) 1,(java.lang.String) A-Asset-Test1]
-at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:43)
-at org.testng.internal.Parameters.injectParameters(Parameters.java:905)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:34)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.ArrayList.forEach(ArrayList.java:1257)
-at org.testng.TestRunner.privateRun(TestRunner.java:764)
-at org.testng.TestRunner.run(TestRunner.java:585)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-at org.testng.TestNG.runSuites(TestNG.java:1069)
-at org.testng.TestNG.run(TestNG.java:1037)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.internal.reflect.MethodMatcherException -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="Setup" is-config="true" duration-ms="8294" started-at="2021-05-28T19:47:02 IST" finished-at="2021-05-28T19:47:11 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method status="PASS" signature="QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="QUAL001" duration-ms="13712" started-at="2021-05-28T19:47:11 IST" description="Qualification process flow" data-provider="QUAL001" finished-at="2021-05-28T19:47:24 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1.0]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[111111]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Asset01]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[setup-1]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[10.17.18.61]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Test1]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[A-Asset-Test1]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- QUAL001 -->
-        <test-method status="PASS" signature="endReport_releaseMomory()[pri:0, instance:com.QualFlowVRT.testcases.QualificationProcessTest@38bc8ab5]" name="endReport_releaseMomory" is-config="true" duration-ms="278" started-at="2021-05-26T22:29:29 IST" finished-at="2021-05-26T22:29:29 IST">
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="Teardown" is-config="true" duration-ms="37" started-at="2021-05-28T19:47:24 IST" finished-at="2021-05-28T19:47:24 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=QUAL001 status=SUCCESS method=HitNTrialTests.QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="Setup()[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="Setup" is-config="true" duration-ms="5581" started-at="2021-05-28T19:47:24 IST" finished-at="2021-05-28T19:47:30 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method status="PASS" signature="QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="QUAL001" duration-ms="13814" started-at="2021-05-28T19:47:30 IST" description="Qualification process flow" data-provider="QUAL001" finished-at="2021-05-28T19:47:44 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[2.0]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[111111]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Asset01]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[setup-1]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[10.17.18.61]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Test1]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[A-Asset-Test2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QUAL001 -->
+        <test-method status="PASS" signature="Teardown(org.testng.ITestResult)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="Teardown" is-config="true" duration-ms="39" started-at="2021-05-28T19:47:44 IST" finished-at="2021-05-28T19:47:44 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=QUAL001 status=SUCCESS method=HitNTrialTests.QUAL001(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="endReport_releaseMomory()[pri:0, instance:com.QualFlowVRT.testcases.HitNTrialTests@38bc8ab5]" name="endReport_releaseMomory" is-config="true" duration-ms="329" started-at="2021-05-28T19:47:44 IST" finished-at="2021-05-28T19:47:44 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport_releaseMomory -->
-      </class> <!-- com.QualFlowVRT.testcases.QualificationProcessTest -->
+      </class> <!-- com.QualFlowVRT.testcases.HitNTrialTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

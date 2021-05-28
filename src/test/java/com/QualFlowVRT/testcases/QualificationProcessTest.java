@@ -67,13 +67,14 @@ public class QualificationProcessTest extends BaseClass {
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
-		extent.addSystemInfo("TestSuiteName", "QualificationProcessTest");
+		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationStartTest" + ".html", true);
+		extent.addSystemInfo("TestSuiteName", "QualificationStartTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		System.out.println("Qualification Process Test is in Progress..");
-
+		//System.out.println("Qualification Start Test is in Progress..");
 		
 	}
 
@@ -118,8 +119,8 @@ public class QualificationProcessTest extends BaseClass {
 		driver.quit();
 	}
 
-	
 	// Test Cases
+
 	// QUAL001-Verify the Qualification process for a 10 mnt study
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -129,9 +130,8 @@ public class QualificationProcessTest extends BaseClass {
 
 		extentTest = extent.startTest("Qualification process flow");
 		SoftAssert sa = new SoftAssert();
-		System.out.println("**********************************************************");
-		System.out.println("------------------Run # "+RunNo+" Started---------------");
-		System.out.println("**********************************************************");
+		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
+		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
 		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
 		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
@@ -149,7 +149,6 @@ public class QualificationProcessTest extends BaseClass {
 		assetDetailsPage.Click_SetupName(Sname);
 
 		assetDetailsPage.click_InitiateQualBtn();
-
 		SelectBaseStationPage = assetDetailsPage.Enter_SOP(SetupSOP);
 		SelectBaseStationPage.Enter_BS_IPAddress(BSIP);
 		SelectBaseStationPage.Enter_Add_btn();
@@ -232,39 +231,43 @@ public class QualificationProcessTest extends BaseClass {
 		//System.out.println(ActMsg);
 		String Expmsg = "Spreadsheet generated successfully";
 		sa.assertEquals(ActMsg, Expmsg, "Fail : Spreadsheet has not generated");
-		System.out.println(ActMsg+" for the targeted Asset "+Aname);
+		System.out.println("Spreadsheet generated successfully for the targeted Asset "+Aname);
 		//Closing the App
 		RWFileSelctionPage.rightclickon_RWFSPage();
 		MainHubPage = RWFileSelctionPage.clickHomeIcon();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.ClickCancelBtn();
-		Thread.sleep(7000);
-		System.out.println("VRT App is successfuly Closed");
-		
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println("------------------Run # "+RunNo+" completed---------------");
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		Thread.sleep(5000);
+		try {
+			if (LoginPage.Is_VRTAppLoginScreen_Displayed()) {				
+				System.out.println("VRT App is Not Closed and is still visible");
+			}
+		} catch (Exception e) {
+			System.out.println("VRT App is successfuly Closed");
+		}
+		System.out.println("**********************************************************");
+		System.out.println("---------Run # "+RunNo+" Completed at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"---------");
+		System.out.println("**********************************************************");
 		sa.assertAll();
 		
 	}
-
+	
 /*
 	// Qual Start and log out from VRT application
 	@Test(groups = {
-			"Regression" }, dataProvider = "QUALSTART", dataProviderClass = QualificationUtility.class, 
-					description = "QUALSTART- Trigger the Qualification Start process")
-	public void QUAL003(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, String SetupSOP)
+			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
+					description = "Starting a Qualification study")
+	public void QUAL003(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, 
+			String SetupSOP, String StudyTimeInMinutes, String StudySaveComment)
 			throws InterruptedException, IOException, AWTException {
 		// , String lname , String BSIP
-		extentTest = extent.startTest("Start the Qualification Study");
+		extentTest = extent.startTest("Starting a Qualification study");
 		SoftAssert sa = new SoftAssert();
-		System.out.println("**********************************************************");
-		System.out.println("------------------Run # "+RunNo+" Started---------------");
-		System.out.println("**********************************************************");
+		
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
 		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
 		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
-		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"-"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
 		//System.out.println(Path);
 		tu.create_Folder(FPath2);
 				
@@ -316,23 +319,31 @@ public class QualificationProcessTest extends BaseClass {
 		//For Ex: If we run the code in HMI & Device in the same network, then its quite fast and a max of 5 sec is whta is required.
 		//But if we try to connect an HMI & BS which is separate network and connect via VPN, then it takes more waiting time.
 		Thread.sleep(30000);  
-		QualificationPage.handle_lgrStatusPopup_QualStart();		
+		QualificationPage.handle_lgrStatusPopup_QualStart();
 		
-		//After Qual is started, move to the Main Hub Page and logout of the app followed by closing it.
+		// After Qual start, move to home page, Signout and close the app
 		MainHubPage = QualificationPage.Click_Home_Icon_AppBar();
 		MainHubPage.click_connectBtn();
 		LoginPage = MainHubPage.UserSignOut();
 		LoginPage.ClickCancelBtn();
-		Thread.sleep(7000);
-
-		System.out.println("VRT App is successfuly Closed after Qual study start");
-		
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		Thread.sleep(5000);
+		try {
+			if (LoginPage.Is_VRTAppLoginScreen_Displayed()) {
+				System.out.println("VRT App is Not Closed");
+			}
+		} catch (Exception e) {
+				System.out.println("VRT App is successfuly Closed");
+		}
+		System.out.println("**********************************************************");
 		System.out.println("------------------Run # "+RunNo+" completed---------------");
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		System.out.println("**********************************************************");
+		sa.assertAll();
 
 	}
-/*
+	
+	*/
+
+	/*
 	// Qual Stop and log out from VRT application
 	@Test(groups = { "Regression" }, description = "QUAL001-Verify the Qualification process")
 	public void QUAL004() throws InterruptedException, IOException, AWTException {
@@ -354,5 +365,6 @@ public class QualificationProcessTest extends BaseClass {
 		ReadLoggersPage = QualificationPage.clickQstop_HistoricalData();
 		ReadLoggersPage.click_Savebtn();
 		MainHubPage = ReadLoggersPage.click_okAndEnterComment("ABC");
-	}*/
+	}
+	*/
 }

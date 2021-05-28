@@ -51,7 +51,7 @@ public class BaseClass {
 	public BaseClass() throws IOException {
 		try {
 			prop = new Properties();
-			//Below Path will be used whle creating an Jar/exe file where the config file will be 
+			//Below Path will be used while creating an Jar/exe file where the config file will be 
 			//placed present in the jar.exe path location.
 			FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/config.properties");
 
@@ -75,7 +75,7 @@ public class BaseClass {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability("deviceName", "WindowsPC");
             capabilities.setCapability("app", Url);
-            capabilities.setCapability("ms:waitForAppLaunch", "20");
+            capabilities.setCapability("ms:waitForAppLaunch", "15");
 	
             driver = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);			
 			driver.manage().window().maximize();
