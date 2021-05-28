@@ -58,7 +58,7 @@ public class SelectLoggersPage extends BaseClass {
 		Thread.sleep(2000);
 		WebElement ForceIdle_Btn_Yes = driver.findElementByAccessibilityId("Button1");
 		clickOn(ForceIdle_Btn_Yes);
-		Thread.sleep(30000);
+		Thread.sleep(40000);
 	}
 
 	// select loggers

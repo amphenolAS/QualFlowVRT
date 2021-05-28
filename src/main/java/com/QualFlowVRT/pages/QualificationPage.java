@@ -199,7 +199,7 @@ public class QualificationPage extends BaseClass {
 		ac.contextClick().build().perform();
 		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
 		clickOn(bottomMenu_Home_Icon);
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		return new MainHubPage();
 	}
 

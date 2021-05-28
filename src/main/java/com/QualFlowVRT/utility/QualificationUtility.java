@@ -21,11 +21,11 @@ public class QualificationUtility extends BaseClass {
 
 	// Read TestData from the Excel sheet
 	//Below Path will be used while executing scripts from Eclipse IDE.
-	public static String TestData_sheetPath = System.getProperty("user.dir") + "/src/test/resources/TestData/" + "QualProcessTestData.xlsx";
+	//public static String TestData_sheetPath = System.getProperty("user.dir") + "/src/test/resources/TestData/" + "QualProcessTestData.xlsx";
 	
 	//Below Path will be used whle creating an Jar/exe file where the config file will be 
 	//placed present in the jar.exe path location.
-	//public static String TestData_sheetPath = System.getProperty("user.dir") + "/QualProcessTestData.xlsx";
+	public static String TestData_sheetPath = System.getProperty("user.dir") + "/QualProcessTestData.xlsx";
 	
 
 

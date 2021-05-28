@@ -55,7 +55,7 @@ public class LoginPage extends BaseClass {
 
 	// Launch of Main App with Login page...")
 	public boolean Is_VRTAppLoginScreen_Displayed() {
-		return IsElementEnabledStatus(MainLoginUID);
+		return MainLoginUID.isDisplayed();
 	}
 
 	// Check the contents of the Main Login screen")
