@@ -181,7 +181,7 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("Moved to Qualification Page...");
 		QualificationPage.click_Start_qualbtn();
 		UserLoginPopup(UID, PW);
-		
+		System.out.println("Qualification Study Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//This time depends upon how & where are we testing the code.
 		//For Ex: If we run the code in HMI & Device in the same network, then its quite fast and a max of 5 sec is whta is required.
 		//But if we try to connect an HMI & BS which is separate network and connect via VPN, then it takes more waiting time.
@@ -197,6 +197,7 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("Clicking the QUal Stop Button");		
 		QualificationPage.click_Stop_qualbtn();
 		UserLoginPopup(UID, PW);
+		System.out.println("Qualification Study Stopped at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		System.out.println("Check for the logger status pop and move to Read Logger Page");		
 		ReadLoggersPage = QualificationPage.handle_lgrStatusPopup_QualSTop();
 	
@@ -252,7 +253,7 @@ public class QualificationProcessTest extends BaseClass {
 		
 	}
 	
-/*
+
 	// Qual Start and log out from VRT application
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -264,6 +265,8 @@ public class QualificationProcessTest extends BaseClass {
 		extentTest = extent.startTest("Starting a Qualification study");
 		SoftAssert sa = new SoftAssert();
 		
+		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
+		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
 		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
 		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
@@ -281,7 +284,6 @@ public class QualificationProcessTest extends BaseClass {
 		assetDetailsPage.Click_SetupName(Sname);
 
 		assetDetailsPage.click_InitiateQualBtn();
-
 		SelectBaseStationPage = assetDetailsPage.Enter_SOP(SetupSOP);
 		SelectBaseStationPage.Enter_BS_IPAddress(BSIP);
 		SelectBaseStationPage.Enter_Add_btn();
@@ -314,7 +316,7 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("Moved to Qualification Page...");
 		QualificationPage.click_Start_qualbtn();
 		UserLoginPopup(UID, PW);
-		
+		System.out.println("Qualification Study Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//This time depends upon how & where are we testing the code.
 		//For Ex: If we run the code in HMI & Device in the same network, then its quite fast and a max of 5 sec is whta is required.
 		//But if we try to connect an HMI & BS which is separate network and connect via VPN, then it takes more waiting time.
@@ -341,7 +343,7 @@ public class QualificationProcessTest extends BaseClass {
 
 	}
 	
-	*/
+	
 
 	/*
 	// Qual Stop and log out from VRT application
