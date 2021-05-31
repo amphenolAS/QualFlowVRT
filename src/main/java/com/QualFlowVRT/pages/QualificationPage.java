@@ -171,16 +171,15 @@ public class QualificationPage extends BaseClass {
 	public boolean waitForHistoricalData_AlertTo_Disapper() {
 		boolean flag = false;
 		try {
-
 			flag = driver.findElementByAccessibilityId("displayMessageTextBlock").isEnabled();
 		} catch (Exception e) {
-			System.out.println("wait for Historical Alert to disappear");
+			System.out.println("wait for Historical Alert disappear dissapered");
 		}
 		return flag;
 	}
 
-	//
-	public ReadLoggersPage clickQstop_HistoricalData() throws IOException, InterruptedException {
+/*	//Ruchika code
+	public ReadLoggersPage clickQstop_HistoricalData(String UID, String PW) throws IOException, InterruptedException {
 		WebElement Stop_qual = driver.findElementByAccessibilityId("btnStopQual");
 		clickOn(Stop_qual);
 		while (waitForHistoricalData_AlertTo_Disapper()) {
@@ -188,13 +187,26 @@ public class QualificationPage extends BaseClass {
 		}
 		// clickOn(Stop_qual);
 		System.out.println("Historical data alert not displayed");
-		UserLoginPopup(getUID("adminFull"), getPW("adminFull"));
+		UserLoginPopup(UID, PW);
 		return new ReadLoggersPage();
+	}*/
+	
+	//
+	public void clickQstop_ToGetRidOfHistoricalData_AlertMsg() throws IOException, InterruptedException {
+		WebElement Stop_qual = driver.findElementByAccessibilityId("btnStopQual");
+		clickOn(Stop_qual);
+		while (waitForHistoricalData_AlertTo_Disapper()) {
+			Thread.sleep(2000);
+		}
+		// clickOn(Stop_qual);
+		System.out.println("Historical data alert not displayed");
 	}
 
 
 	// Click on the Home icon of the bottom apps bar to move to Main Hub page
 	public MainHubPage Click_Home_Icon_AppBar() throws InterruptedException, IOException {
+		WebElement qualification_Title = driver.findElementByAccessibilityId("qualification");
+		clickOn(qualification_Title);
 		Actions ac = new Actions(driver);
 		ac.contextClick().build().perform();
 		WebElement bottomMenu_Home_Icon = driver.findElementByAccessibilityId("HomeAppBarButton");
