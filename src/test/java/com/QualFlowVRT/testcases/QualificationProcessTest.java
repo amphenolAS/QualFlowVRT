@@ -66,15 +66,15 @@ public class QualificationProcessTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
-		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationStartTest" + ".html", true);
+		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationStartTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "QualificationStartTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("Qualification Process Test is in Progress..");
-		//System.out.println("Qualification Start Test is in Progress..");
+		//System.out.println("Qualification Process Test is in Progress..");
+		System.out.println("Qualification Start Test is in Progress..");
 		
 	}
 
@@ -121,7 +121,7 @@ public class QualificationProcessTest extends BaseClass {
 
 	// Test Cases
 
-	// QUAL001-Verify the Qualification process for a 10 mnt study
+/*	// QUAL001-Verify the Qualification process for a 10 mnt study
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 					description = "Qualification process flow")
@@ -252,16 +252,17 @@ public class QualificationProcessTest extends BaseClass {
 		sa.assertAll();
 		
 	}
-	
+*/	
 
+	
 	// Qual Start and log out from VRT application
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 					description = "Starting a Qualification study")
-	public void QUAL003(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, 
+	public void QUAL_Start(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, 
 			String SetupSOP, String StudyTimeInMinutes, String StudySaveComment)
 			throws InterruptedException, IOException, AWTException {
-		// , String lname , String BSIP
+			
 		extentTest = extent.startTest("Starting a Qualification study");
 		SoftAssert sa = new SoftAssert();
 		
@@ -345,28 +346,90 @@ public class QualificationProcessTest extends BaseClass {
 	
 	
 
-	/*
+/*	
 	// Qual Stop and log out from VRT application
-	@Test(groups = { "Regression" }, description = "QUAL001-Verify the Qualification process")
-	public void QUAL004() throws InterruptedException, IOException, AWTException {
-		// , String lname , String BSIP
-		extentTest = extent.startTest("QUAL001-Verify the Qualification process");
+	@Test(groups = { "Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
+			description = "QUALIFICATION Stop process")
+	public void QUAL_STOP(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, 
+			String SetupSOP, String StudyTimeInMinutes, String StudySaveComment)
+			throws InterruptedException, IOException, AWTException {
+		extentTest = extent.startTest("QUALIFICATION Stop process");
 		SoftAssert sa = new SoftAssert();
-		MainHubPage = LoginPage.Login(getUID("adminFull"), getPW("adminFull"));
+		
+		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
+		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
+		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
+		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
+		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+		//System.out.println(Path);
+		tu.create_Folder(FPath2);
+		
+		MainHubPage = LoginPage.Login(UID, PW);
 		SelectBaseStationPage = MainHubPage.clickonDiscoverTile();
-		SelectBaseStationPage.Enter_BS_IPAddress("192.168.99.50");
+		SelectBaseStationPage.Enter_BS_IPAddress(BSIP);
 		SelectBaseStationPage.Enter_Add_btn();
-		Thread.sleep(3000);
-		SelectBaseStationPage.Select_BSListbox("Ethernet IP-- 192.168.99.50");
-		// Ethernet IP-- 192.168.99.50
-		// Ethernet IP-- 10.17.18.55
+		Thread.sleep(2000);
+		SelectBaseStationPage.Select_BSListbox("Ethernet IP-- " + BSIP);
 		QualificationPage = SelectBaseStationPage.ClickConnectBtn_ViaDiscovertile();
-		// QualificationPage.click_stopQuaal();
-		// Thread.sleep(4000);
+		System.out.println("Moved to Qualification Page...");
 
-		ReadLoggersPage = QualificationPage.clickQstop_HistoricalData();
-		ReadLoggersPage.click_Savebtn();
-		MainHubPage = ReadLoggersPage.click_okAndEnterComment("ABC");
-	}
-	*/
+		QualificationPage.clickQstop_ToGetRidOfHistoricalData_AlertMsg();
+		QualificationPage.click_Stop_qualbtn();
+		UserLoginPopup(UID, PW);
+		System.out.println("Qualification Study Stopped at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
+		System.out.println("Check for the logger status pop and move to Read Logger Page");		
+		ReadLoggersPage = QualificationPage.handle_lgrStatusPopup_QualSTop();
+	
+		Thread.sleep(5000);
+		ReadLoggersPage.click_SaveSTudybtn();
+		UserLoginPopup(UID, PW);
+
+		MainHubPage = ReadLoggersPage.click_okAndEnterComment(StudySaveComment, UID, PW);
+		System.out.println("Moved to Main Hub Page");
+		assetHubPage = MainHubPage.Click_AssetTile2();
+		System.out.println("Moved to Asset Hub Page");
+		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
+		System.out.println("Moved to Targeted Asset "+Aname+" Page");
+		assetDetailsPage.click_QualTile();
+		System.out.println("Moved to Qual tile of the targeted Asset");
+		assetDetailsPage.click_QualListPanel();
+		// sa.assertEquals(assetDetailsPage.qualTile_countdata(), "1", "Fail: Qualtile
+		// is not displaying the count");
+		// System.out.println(assetDetailsPage.qual_StudyFile_Comments_txt());
+		//sa.assertEquals(assetDetailsPage.qual_StudyFile_Comments_txt(), StudySaveComment,
+		//		"Fail: comment  is not displaying in the qual studyfile");
+		assetDetailsPage.Select_QualFile(StudySaveComment);
+		System.out.println("Selected the Targeted Qual file under the Asset "+Aname+" details Page for report creation");
+		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
+		System.out.println("Moved to RW file selection Page");
+		RWFileSelctionPage.click_ExportToExcelBtn();
+		Thread.sleep(2000);
+		RWFileSelctionPage.selectFolder(FPath2);
+		Thread.sleep(2000);
+		
+		String ActMsg = RWFileSelctionPage.AlertMsg();
+		//System.out.println(ActMsg);
+		String Expmsg = "Spreadsheet generated successfully";
+		sa.assertEquals(ActMsg, Expmsg, "Fail : Spreadsheet has not generated");
+		System.out.println("Spreadsheet generated successfully for the targeted Asset "+Aname);
+		//Closing the App
+		RWFileSelctionPage.rightclickon_RWFSPage();
+		MainHubPage = RWFileSelctionPage.clickHomeIcon();
+		LoginPage = MainHubPage.UserSignOut();
+		LoginPage.ClickCancelBtn();
+		Thread.sleep(5000);
+		try {
+			if (LoginPage.Is_VRTAppLoginScreen_Displayed()) {				
+				System.out.println("VRT App is Not Closed and is still visible");
+			}
+		} catch (Exception e) {
+			System.out.println("VRT App is successfuly Closed");
+		}
+		System.out.println("**********************************************************");
+		System.out.println("---------Run # "+RunNo+" Completed at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"---------");
+		System.out.println("**********************************************************");
+		sa.assertAll();
+	}*/
+	
 }

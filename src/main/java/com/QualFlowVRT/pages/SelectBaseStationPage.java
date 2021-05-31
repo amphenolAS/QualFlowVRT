@@ -116,7 +116,7 @@ public class SelectBaseStationPage extends BaseClass {
 		return new SelectLoggersPage();
 	}
 
-	// click on connect btn to navigate QualificationPage
+	// click on connect btn to navigate QualificationPage via Discover tile while any study is already running
 	public QualificationPage ClickConnectBtn_ViaDiscovertile() throws IOException, InterruptedException {
 		clickOn(Connect_Btn);
 		Thread.sleep(3000);
