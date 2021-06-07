@@ -129,7 +129,7 @@ public class TestUtilities extends BaseClass {
 		return sdf.format(timestamp);
 	}
 	
-	// get_CurrentDate & Tomestamp_in any Format like:dd-MM-yyyy-HH-mm-ss
+	// get_CurrentDate & Timestamp_in any Format like:dd-MM-yyyy-HH-mm-ss
 	public String get_CurrentDateandTimeStamp2(String DtTimeFormat) {
 		SimpleDateFormat sdf = new SimpleDateFormat(DtTimeFormat);
 
@@ -240,7 +240,19 @@ public class TestUtilities extends BaseClass {
 		FileUtils.copyFile(screenShot, new File(destination));
 
 	}
-
+	
+	//Generic method to Capture Screenshot and copy it to some targeted location
+	public void capture_Screenshot(WebDriver driver, String screenshotName, String destination) throws IOException {
+		String dateName = new SimpleDateFormat("yyyy_MM_dd_hhmmss").format(new Date());
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		// after execution, you could see a folder "FailedTestsScreenshots"
+		// under src folder
+		String path = destination +"/"+ screenshotName + "_"+ dateName + ".png";
+		File finalDestination = new File(path);
+		FileUtils.copyFile(source, finalDestination);
+	}
+	
 	// Comparison of two images placed at the default Test Data Folder
 	public boolean compareImage(String ExpImgName, String ActImgName) throws IOException {
 		boolean state = false;
@@ -306,20 +318,7 @@ public class TestUtilities extends BaseClass {
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);
 		return destination;
-	}
-	
-	public static String captureFailedTCScreenshot(WebDriver driver, String screenshotName) throws IOException {
-		String dateName = new SimpleDateFormat("yyyy_MM_dd_hhmmss").format(new Date());
-		TakesScreenshot ts = (TakesScreenshot) driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		// after execution, you could see a folder "FailedTestsScreenshots"
-		// under src folder
-		String destination = System.getProperty("system.dir") + "/FailedTestsScreenshots/" + screenshotName + "_"
-				+ dateName + ".png";
-		File finalDestination = new File(destination);
-		FileUtils.copyFile(source, finalDestination);
-		return destination;
-	}
+	}	
 
 	// Upload Documents method
 	public void uploadDoc(String filename) throws AWTException, IOException, InterruptedException {

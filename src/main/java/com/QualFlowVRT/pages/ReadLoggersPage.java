@@ -17,10 +17,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.QualFlowVRT.base.BaseClass;
+import com.QualFlowVRT.utility.TestUtilities;
 
 public class ReadLoggersPage extends BaseClass {
 
 	// Calculation page element variable declaration definition
+	TestUtilities tu = new TestUtilities();
 
 	private void initializeEelements() {
 
@@ -29,16 +31,6 @@ public class ReadLoggersPage extends BaseClass {
 	ReadLoggersPage() throws IOException {
 		super();
 		initializeEelements();
-	}
-
-	public void capture_screenshot(WebDriver driver, String DestinationFldrName, String screenshotName)
-			throws IOException {
-		// Take screen shot of whole page
-		File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String destination = System.getProperty("user.dir") + "/src/test/resources/" + DestinationFldrName + "/"
-				+ screenshotName + ".png";
-		FileUtils.copyFile(screenShot, new File(destination));
-
 	}
 
 	public boolean waitForSaveBtnToEnable() {
@@ -51,12 +43,12 @@ public class ReadLoggersPage extends BaseClass {
 		return flag;
 	}
 
-	public boolean Click_ExcludeLoggers_Btn_TakeScreenshot() {
+	public boolean Click_ExcludeLoggers_Btn_TakeScreenshot(String destination) {
 		boolean flag = false;
 		try {
 			flag = driver.findElementByAccessibilityId("Button0").isEnabled();
 			if (flag == true) {
-				//capture_screenshot(driver, "TestData", "Exclude");
+				tu.capture_Screenshot(driver, "ReadLgrPg_excludeLoggerPopUp", destination);
 				click_Exclude_Btn();
 			}
 
@@ -73,10 +65,10 @@ public class ReadLoggersPage extends BaseClass {
 
 	}
 
-	public void click_SaveStudybtn1() throws IOException, InterruptedException {
+	public void click_SaveStudybtn1(String destination) throws IOException, InterruptedException {
 		while (!waitForSaveBtnToEnable()) {
 			Thread.sleep(6000);
-			Click_ExcludeLoggers_Btn_TakeScreenshot();
+			Click_ExcludeLoggers_Btn_TakeScreenshot(destination);
 		}
 		WebElement SaveButton = driver.findElementByAccessibilityId("NextButton");
 		clickOn(SaveButton);
@@ -90,7 +82,7 @@ public class ReadLoggersPage extends BaseClass {
 	}
 
 	//Click the Qualification button to move to Qual page  after all loggers are programmed
-	public void click_SaveSTudybtn() throws IOException, InterruptedException {
+	public void click_SaveSTudybtn(String destination) throws IOException, InterruptedException {
 		System.out.println("Save study  button enable state1: "+SaveStudyBtnEnabled_status());	
 		if (SaveStudyBtnEnabled_status()==true) {
 			//Click the save study button
@@ -101,14 +93,14 @@ public class ReadLoggersPage extends BaseClass {
 				
 				//Check for Missing samples alert message for any logger and if displayed, click on the "Continue with Missing Samples"
 				try {
-					click_ContinuewithMissingSample();
+					click_ContinuewithMissingSample(destination);
 
 				} catch (Exception e) {
 					System.out.println("Missing Samples alert message not displayed");
 				}	
 				
 				try {
-					click_ExcludeLoggers();
+					click_ExcludeLoggers(destination);
 
 				} catch (Exception e) {
 					System.out.println("Exclude Loggers alert not displayed");
@@ -125,10 +117,11 @@ public class ReadLoggersPage extends BaseClass {
 	}
 	
 	//Click ContinuewithMissingSample_Btn in the Missing sample alert message if displayed in Read Loggers page
-	public void click_ContinuewithMissingSample() throws InterruptedException {
+	public void click_ContinuewithMissingSample(String destination) throws InterruptedException, IOException {
 		boolean ContinuewithMissingSamplepopup_Displayed = driver.findElementByAccessibilityId("Popup Window")
 				.isEnabled();
 		if (ContinuewithMissingSamplepopup_Displayed) {
+			tu.capture_Screenshot( driver,"ContinuewithMissingSample_ReadLoggersPage",destination);
 			WebElement ContinuewithMissingSample_Btn = driver.findElementByAccessibilityId("Button0");
 			clickOn(ContinuewithMissingSample_Btn);	
 			
@@ -138,9 +131,10 @@ public class ReadLoggersPage extends BaseClass {
 	}
 	
 	//Click the exclude logger button in the exclude logger alert message if displayed 
-	public void click_ExcludeLoggers() throws InterruptedException {
+	public void click_ExcludeLoggers(String destination) throws InterruptedException, IOException {
 		boolean ExcludeLoggersPopup_Displayed = driver.findElementByAccessibilityId("Popup Window").isEnabled();
 		if (ExcludeLoggersPopup_Displayed) {
+			tu.capture_Screenshot(driver, "ReadLgrPg_ExcludeLgrAlert", destination);
 			WebElement ExcludeLoggers = driver.findElementByAccessibilityId("Button1");
 			clickOn(ExcludeLoggers);
 
@@ -156,7 +150,7 @@ public class ReadLoggersPage extends BaseClass {
 	}
 
 	// click on confirmation ok btn to save study
-	public MainHubPage click_okAndEnterComment(String cmntval, String UID, String PW) throws IOException, InterruptedException {
+	public MainHubPage click_okAndEnterComment(String cmntval, String UID, String PW, String destination) throws IOException, InterruptedException {
 		WebElement cmnt = driver.findElementByAccessibilityId("StopQualifCalibCommentsTextBox");
 		WebElement ok_btn = driver.findElementByAccessibilityId("StopQualifCalibOKButton");
 		clickOn(cmnt);
@@ -166,6 +160,7 @@ public class ReadLoggersPage extends BaseClass {
 		try {
 			while (reReadStatus()==true) {
 				Thread.sleep(3000);
+				tu.capture_Screenshot(driver, "ReadLgrPg_reReadAlertMsg", destination);
 				boolean reReadStatusPopup_displaySTate = driver.findElementByAccessibilityId("reReadStatus").isDisplayed();
 				if (reReadStatusPopup_displaySTate == false) {
 					break;
