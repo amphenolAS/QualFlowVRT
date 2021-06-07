@@ -24,6 +24,8 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Properties;
 import java.net.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.*;
 import java.util.*;
 
@@ -383,7 +385,7 @@ public class TestUtilities extends BaseClass {
 		return FetchText(Msg);
 	}
 
-	// Method to retrive all the file names present in any folder
+	// Method to retrieve all the file names present in any folder
 	public List<String> get_fileNamesList(String folderpath) {
 		List<String> results = new ArrayList<String>();
 
@@ -412,6 +414,21 @@ public class TestUtilities extends BaseClass {
 			} else {
 				System.out.println("cant delete a file due to open or error");
 			}
+		}
+	}	
+	
+	// Copy the files from source folder to destination folder
+	public void copyFile(String from, String to) throws IOException {
+		try {
+			// source & destination directories
+			File src = new File(from);
+			File destDir = new File(to);
+
+			// copy all files from COMMLog folder
+			FileUtils.copyDirectory(src, destDir);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 	
@@ -449,7 +466,6 @@ public class TestUtilities extends BaseClass {
 		
 		return SWVersionText;
 	}
-	
 	
 
 }

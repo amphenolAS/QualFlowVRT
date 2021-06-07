@@ -66,15 +66,24 @@ public class QualificationProcessTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationStartTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
+		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STARTTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "QualificationStartTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		//System.out.println("Qualification Process Test is in Progress..");
-		System.out.println("Qualification Start Test is in Progress..");
+		System.out.println("Qualification START Test is in Progress..");
+		//System.out.println("Qualification STOP Test is in Progress..");
+		
+		//Deleting/CLearing the log files present in the C-Drive comlog folder
+        String path1 = "C:\\DataFiles\\COMMLog";
+        tu.DeleteFiles(path1);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(path2);		
 		
 	}
 
@@ -92,6 +101,7 @@ public class QualificationProcessTest extends BaseClass {
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		Thread.sleep(500);
 		LoginPage = new LoginPage();
+		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
 
 	}
 
@@ -121,7 +131,7 @@ public class QualificationProcessTest extends BaseClass {
 
 	// Test Cases
 
-/*	// QUAL001-Verify the Qualification process for a 10 mnt study
+/*	// QUALIFICATION START-STOP process for a 10 mnt study
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 					description = "Qualification process flow")
@@ -249,12 +259,18 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("**********************************************************");
 		System.out.println("---------Run # "+RunNo+" Completed at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"---------");
 		System.out.println("**********************************************************");
+		
+		//Copy the log files from the C-Drive ComLog folder to the destination folder
+		tu.copyFile("C:\\DataFiles\\COMMLog", FPath2);
+		//Copy the log files from the App Log files folder under DataFiles to the destination folder
+		tu.copyFile("C:\\\\Program Files (x86)\\\\Kaye\\\\Kaye AVS Service\\\\DataFiles\\\\Logs", FPath2);
+		
 		sa.assertAll();
 		
 	}
-*/	
 
-	
+*/
+/*
 	// Qual Start and log out from VRT application
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -341,12 +357,16 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("------------------Run # "+RunNo+" completed---------------");
 		System.out.println("**********************************************************");
 		sa.assertAll();
-
+		
+		//Copy the log files from the C-Drive ComLog folder to the destination folder
+		tu.copyFile("C:\\DataFiles\\COMMLog", FPath2);
+		//Copy the log files from the App Log files folder under DataFiles to the destination folder
+		tu.copyFile("C:\\\\Program Files (x86)\\\\Kaye\\\\Kaye AVS Service\\\\DataFiles\\\\Logs", FPath2);
+		
 	}
+	*/
 	
 	
-
-/*	
 	// Qual Stop and log out from VRT application
 	@Test(groups = { "Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 			description = "QUALIFICATION Stop process")
@@ -429,7 +449,15 @@ public class QualificationProcessTest extends BaseClass {
 		System.out.println("**********************************************************");
 		System.out.println("---------Run # "+RunNo+" Completed at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"---------");
 		System.out.println("**********************************************************");
+		
+		//Copy the log files from the C-Drive ComLog folder to the destination folder
+		tu.copyFile("C:\\DataFiles\\COMMLog", FPath2);
+		//Copy the log files from the App Log files folder under DataFiles to the destination folder
+		tu.copyFile("C:\\\\Program Files (x86)\\\\Kaye\\\\Kaye AVS Service\\\\DataFiles\\\\Logs", FPath2);
+		
 		sa.assertAll();
-	}*/
+		
+	}
+	
 	
 }

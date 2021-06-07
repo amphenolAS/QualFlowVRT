@@ -1,19 +1,15 @@
 package com.QualFlowVRT.pages;
 
 import java.io.IOException;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.QualFlowVRT.base.BaseClass;
+import com.QualFlowVRT.utility.TestUtilities;
+import com.QualFlowVRT.pages.QualificationPage;
 
 public class ProgramLoggersPage extends BaseClass {
 
+	TestUtilities tu = new TestUtilities();
 	// Calculation page element variable declaration definition
 	WebElement ProgramLoggersTitle = null;
 	WebElement NextButton = null;
@@ -47,6 +43,19 @@ public class ProgramLoggersPage extends BaseClass {
 		return QualificationBtn_state;
 	}
 
+	// Handle ExcludeContinueLoggers Alert message (When sensor count is less than
+	// the connected loggers) in Program Loggers page
+	public void click_ExcludeLoggersandContinue() throws InterruptedException, IOException {
+		boolean ExcludeLoggersandContinuePopup_Displayed = driver.findElementByAccessibilityId("Popup Window")
+				.isEnabled();
+		if (ExcludeLoggersandContinuePopup_Displayed) {
+			Thread.sleep(2000);
+			WebElement ExcludeContinueLoggers = driver.findElementByAccessibilityId("Button1");
+			clickOn(ExcludeContinueLoggers);
+			Thread.sleep(2000);
+		}
+	}
+    
 	//Click the Qualification button to move to Qual page  after all loggers are programmed
 	public QualificationPage click_nextbtn() throws IOException, InterruptedException {
 		boolean QualBtnEnableState1=driver.findElementByAccessibilityId("NextButton").isEnabled();
@@ -54,6 +63,13 @@ public class ProgramLoggersPage extends BaseClass {
 		Thread.sleep(2000);
 		while (QualBtnEnableState1==false) {			
 			Thread.sleep(10000);
+			//Check if the Less Sensors mapped alert message appears and click the Continue with Missing Sample button
+			try {
+				click_ExcludeLoggersandContinue();
+			} catch (Exception e) {
+				System.out.println("Continue with Missing Sample alert not displayed");
+			}
+			
 			boolean QualBtnEnableState2=driver.findElementByName("Qualification").isEnabled();
 			System.out.println("Qualification Next button enable state 2: "+QualBtnEnableState2);		
 			if (QualBtnEnableState2==true) {
@@ -62,7 +78,9 @@ public class ProgramLoggersPage extends BaseClass {
 		}
 		
 		clickOn(NextButton);
-		Thread.sleep(7000);
+		Thread.sleep(5000);
 		return new QualificationPage();
 	}
+
+
 }

@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.QualFlowVRT.testcases.HitNTrialTests">
+      <class name="com.QualFlowVRT.testcases.QualificationProcessTest">
         <methods>
-          <include name="PreSetup"/>
-          <include name="endReport_releaseMomory"/>
           <include name="Setup"/>
-          <include name="QUAL001"/>
+          <include name="PreSetup"/>
+          <include name="QUAL_STOP" invocation-numbers="0"/>
+          <include name="endReport_releaseMomory"/>
           <include name="Teardown"/>
         </methods>
-      </class> <!-- com.QualFlowVRT.testcases.HitNTrialTests -->
+      </class> <!-- com.QualFlowVRT.testcases.QualificationProcessTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
