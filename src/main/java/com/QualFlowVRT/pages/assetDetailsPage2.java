@@ -40,6 +40,7 @@ public class assetDetailsPage2 extends BaseClass {
 		InitiateQual_Btn = null;
 		Asset_QualTile = null;
 	}
+
 	
 	// Click the Setup list panel
 	public void click_SetupListPanel() throws InterruptedException {
@@ -170,34 +171,37 @@ public class assetDetailsPage2 extends BaseClass {
 	}
 	
 	// Select any qual file based on study save comment and click on that
-	public void Select_QualFile(String StudyComment) throws InterruptedException, IOException {
+	public RW_FileSelctionPage Select_QualFile(String StudyComment) throws InterruptedException, IOException {
 		List<WebElement> QUALList = driver.findElementByClassName("ListView")
 				.findElements(By.className("ListViewItem"));
-		// Loop for the different serial number created
-		for (int i = 0; i < QUALList.size(); i++) {
-			// System.out.println("serial number : " + IrtdList.get(i).getText());
-			List<WebElement> QUALInfoList = QUALList.get(i).findElements(By.className("TextBlock"));
-			// System.out.println(" IRTD tile info count: " + IRTDTileInfoList.size());
-
-			// Fetch all the contents of the Asset tile
-			for (int j = 0; j < QUALInfoList.size(); j++) {
-				// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
-
-				String st = QUALInfoList.get(j).getText();
-				if (st.equals(StudyComment)) {
-					QUALInfoList.get(j).click();
-					Thread.sleep(2000);
-					break;
-				}
+		
+		//Click the 1st study file in the list
+		QUALList.get(0).click();
+		
+		List<WebElement> QUALInfoList = QUALList.get(0).findElements(By.className("TextBlock"));
+		
+		// Fetch all the contents of the Asset tile
+		for (int j = 0; j < QUALInfoList.size(); j++) {
+			// System.out.println("AssetTileInfo: "+IRTDTileInfoList.get(j).getText());
+			String st = QUALInfoList.get(j).getText();
+			if (st.equals(StudyComment)) {
+				WebElement GenerateReports = driver.findElementByAccessibilityId("GenerateReportsForQualButton");
+				clickOn(GenerateReports);
+				Thread.sleep(2000);
+				break;
+			}
+			else {
+				System.out.println("Study file not generated");
 			}
 		}
+		return new RW_FileSelctionPage();
 	}
 	
-	// user who has access will navigate to next page
+/*	// user who has access will navigate to next page
 	public RW_FileSelctionPage Click_GenerateReportsBtn_RWpage() throws IOException {
 		WebElement GenerateReports = driver.findElementByAccessibilityId("GenerateReportsForQualButton");
 		clickOn(GenerateReports);
 		return new RW_FileSelctionPage();
-	}
+	}*/
 	
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.QualFlowVRT.base.BaseClass;
+import com.QualFlowVRT.utility.TestUtilities;
 
 public class SelectLoggersPage extends BaseClass {
 
@@ -17,6 +18,7 @@ public class SelectLoggersPage extends BaseClass {
 	WebElement SelectAllLoggers_Btn = null;
 	WebElement ForceIdle_Btn = null;
 	WebElement NextButton = null;
+    TestUtilities tu = new TestUtilities();
 
 	private void initializeEelements() {
 		SelectLoggersTitle = driver.findElementByName("Select Loggers");
@@ -45,14 +47,12 @@ public class SelectLoggersPage extends BaseClass {
 	}
 
 	// click on SelectAllLoggers_Btn
-
 	public void click_SelectAllLoggers_Btn() throws InterruptedException {
 		clickOn(SelectAllLoggers_Btn);
 		Thread.sleep(2000);
 	}
 
 	// click on ForceIdle_Btn
-
 	public void click_ForceIdle_Btn() throws InterruptedException {
 		clickOn(ForceIdle_Btn);
 		Thread.sleep(2000);
@@ -62,13 +62,11 @@ public class SelectLoggersPage extends BaseClass {
 	}
 
 	// select loggers
-
 	public void Select_LoggersListbox(int lname) throws IOException {
 		List<WebElement> LogList = driver.findElementByAccessibilityId("Set1TextTileLandingGrid")
 				.findElements(By.className("GridViewItem"));
 		System.out.println(LogList.size());
 		for (int i = 0; i < lname; i++) {
-
 			LogList.get(i).click();
 
 		}
@@ -142,8 +140,9 @@ public class SelectLoggersPage extends BaseClass {
 	}
 	
 	//Click Yes button for adding new Equipment to the system
-	public void click_AddEqp() throws InterruptedException {
+	public void click_AddEqp(String destination) throws InterruptedException, IOException {
 		if (isAddEqipAlertDisplayed()) {
+			tu.capture_Screenshot(driver, "SelectLgrPg_AadEquipAlert", destination);
 			add_eqp_Yes();
 			Thread.sleep(7000);
 			//clickNext_MappingSensorBtn();
@@ -151,9 +150,10 @@ public class SelectLoggersPage extends BaseClass {
 	}
 	
 	//Check if the battery Threshold message appears and if appears press ok.
-	public void click_YesTo_BatteryAlert() throws InterruptedException {
+	public void click_YesTo_BatteryAlert(String destination) throws InterruptedException, IOException {
 		boolean Is_batteryAlert_displayed = driver.findElementByAccessibilityId("Popup Window").isEnabled();
 		if (Is_batteryAlert_displayed) {
+			tu.capture_Screenshot(driver, "SelectLgrPg_LgrLowBatteryAlert", destination);
 			WebElement Yes_btn = driver.findElementByAccessibilityId("Button1");
 			clickOn(Yes_btn);
 			//clickNext_MappingSensorBtn();

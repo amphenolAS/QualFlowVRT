@@ -66,17 +66,17 @@ public class HitNTrialTests extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
+		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
 		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationStartTest" + ".html", true);
-		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "QualificationStartTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		System.out.println("Qualification Process Test is in Progress..");
+		//System.out.println("Qualification Process Test is in Progress..");
 		//System.out.println("Qualification START Test is in Progress..");
-		//System.out.println("Qualification STOP Test is in Progress..");
+		System.out.println("Qualification STOP Test is in Progress..");
 		//Deleting/CLearing the log files present in the C-Drive comlog folder
         String path1 = "C:\\DataFiles\\COMMLog";
         tu.DeleteFiles(path1);
@@ -152,6 +152,7 @@ public class HitNTrialTests extends BaseClass {
 		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
 		Thread.sleep(2000);
+		
 		assetDetailsPage.click_SetupTile();
 		// assetDetailsPage.click_SetupHeaderBlockText();
 		assetDetailsPage.click_SetupListPanel();
@@ -173,8 +174,8 @@ public class HitNTrialTests extends BaseClass {
 		SelectLoggersPage.clickNext_MappingSensorBtn();
 		
 		try {
-			SelectLoggersPage.click_AddEqp();
-			SelectLoggersPage.click_YesTo_BatteryAlert();
+			SelectLoggersPage.click_AddEqp(FPath2);
+			SelectLoggersPage.click_YesTo_BatteryAlert(FPath2);
 		} catch (Exception e) {
 			System.out.println("No Equipment addition alert message displayed");
 		}
@@ -186,7 +187,7 @@ public class HitNTrialTests extends BaseClass {
 		MappingSensorsPage.sensorAutoMao_operation();
 		ProgramLoggersPage = MappingSensorsPage.click_NextButton_withUnmappedSensors();
 		System.out.println("Moved to Program loggers screen...");
-		QualificationPage = ProgramLoggersPage.click_nextbtn();
+		QualificationPage = ProgramLoggersPage.click_nextbtn(FPath2);
 		System.out.println("Moved to Qualification Page...");
 		QualificationPage.click_Start_qualbtn();
 		UserLoginPopup(UID, PW);
@@ -196,7 +197,7 @@ public class HitNTrialTests extends BaseClass {
 		//But if we try to connect an HMI & BS which is separate network and connect via VPN, then it takes more waiting time.
 		Thread.sleep(30000);  
 
-		QualificationPage.handle_lgrStatusPopup_QualStart();
+		QualificationPage.handle_lgrStatusPopup_QualStart(FPath2);
 		System.out.println("Waiting for the Qual study to run for "+StudyTimeInMinutes+" minutes...");
 		// Method to Convert study wait time from String to integer and then to seconds
 		// This time is the STudy time wait period
@@ -208,13 +209,13 @@ public class HitNTrialTests extends BaseClass {
 		UserLoginPopup(UID, PW);
 		System.out.println("Qualification Study Stopped at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		System.out.println("Check for the logger status pop and move to Read Logger Page");		
-		ReadLoggersPage = QualificationPage.handle_lgrStatusPopup_QualSTop();
+		ReadLoggersPage = QualificationPage.handle_lgrStatusPopup_QualSTop(FPath2);
 	
 		Thread.sleep(5000);
-		ReadLoggersPage.click_SaveSTudybtn();
+		ReadLoggersPage.click_SaveSTudybtn(FPath2);
 		UserLoginPopup(UID, PW);
 
-		MainHubPage = ReadLoggersPage.click_okAndEnterComment(StudySaveComment, UID, PW);
+		MainHubPage = ReadLoggersPage.click_okAndEnterComment(StudySaveComment, UID, PW, FPath2);
 		System.out.println("Moved to Main Hub Page");
 		assetHubPage = MainHubPage.Click_AssetTile2();
 		System.out.println("Moved to Asset Hub Page");
@@ -228,9 +229,9 @@ public class HitNTrialTests extends BaseClass {
 		// System.out.println(assetDetailsPage.qual_StudyFile_Comments_txt());
 		//sa.assertEquals(assetDetailsPage.qual_StudyFile_Comments_txt(), StudySaveComment,
 		//		"Fail: comment  is not displaying in the qual studyfile");
-		assetDetailsPage.Select_QualFile(StudySaveComment);
+		RWFileSelctionPage = assetDetailsPage.Select_QualFile(StudySaveComment);
 		System.out.println("Selected the Targeted Qual file under the Asset "+Aname+" details Page for report creation");
-		RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
+		//RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
 		System.out.println("Moved to RW file selection Page");
 		RWFileSelctionPage.click_ExportToExcelBtn();
 		Thread.sleep(2000);
