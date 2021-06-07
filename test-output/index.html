@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Default_suite">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\manoj.ghadei\AppData\Local\Temp\testng-eclipse-1820690544\testng-customsuite.xml</span>
+                    <span>C:\Users\manoj.ghadei\AppData\Local\Temp\testng-eclipse--632469396\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,26 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content passed suite-Default_suite">
+                    <div class="method-list-content failed suite-Default_suite">
                       <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.QualFlowVRT.testcases.HitNTrialTests" hash-for-method="QUAL001(2.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test2)">QUAL001(2.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test2)</a> <!-- method navigator-link -->
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.QualFlowVRT.testcases.QualificationProcessTest" hash-for-method="QUAL_STOP(10, 1, 111111, Asset01, test, 10.17.18.109, Test1, 2, qualstart-1)">QUAL_STOP(10, 1, 111111, Asset01, test, 10.17.18.109, Test1, 2, qualstart-1)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                      <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.QualFlowVRT.testcases.HitNTrialTests" hash-for-method="QUAL001(1.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test1)">QUAL001(1.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test1)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                    </div> <!-- method-list-content failed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -124,38 +119,92 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+          <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.QualFlowVRT.testcases.HitNTrialTests</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.QualFlowVRT.testcases.QualificationProcessTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="QUAL001(2.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test2)">
-                  </a> <!-- QUAL001(2.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test2) -->
-                  <span class="method-name">QUAL001</span>
-                  <span class="parameters">(2.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test2)</span>
+                  <a name="QUAL_STOP(10, 1, 111111, Asset01, test, 10.17.18.109, Test1, 2, qualstart-1)">
+                  </a> <!-- QUAL_STOP(10, 1, 111111, Asset01, test, 10.17.18.109, Test1, 2, qualstart-1) -->
+                  <span class="method-name">QUAL_STOP</span>
+                  <span class="parameters">(10, 1, 111111, Asset01, test, 10.17.18.109, Test1, 2, qualstart-1)</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;INAS-LP024&apos;, ip: &apos;10.16.214.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {app: Kaye.ValProbeRT_racmveb2qnw..., javascriptEnabled: true, ms:waitForAppLaunch: 15, platform: WINDOWS, platformName: WINDOWS}
+Session ID: F45CFED7-2288-4F17-933E-B03AEA15E18D
+*** Element info: {Using=name, value=Enter User Credentials}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:404)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByName(DefaultGenericMobileDriver.java:118)
+	at io.appium.java_client.AppiumDriver.findElementByName(AppiumDriver.java:1)
+	at io.appium.java_client.windows.WindowsDriver.findElementByName(WindowsDriver.java:1)
+	at com.QualFlowVRT.base.BaseClass.UserLoginPopup(BaseClass.java:191)
+	at com.QualFlowVRT.testcases.QualificationProcessTest.QUAL_STOP(QualificationProcessTest.java:405)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.testng.TestRunner.privateRun(TestRunner.java:764)
+	at org.testng.TestRunner.run(TestRunner.java:585)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.runSuites(TestNG.java:1069)
+	at org.testng.TestNG.run(TestNG.java:1037)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+
+</div> <!-- stack-trace -->
                   <em>
-(Qualification process flow)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="QUAL001(1.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test1)">
-                  </a> <!-- QUAL001(1.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test1) -->
-                  <span class="method-name">QUAL001</span>
-                  <span class="parameters">(1.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test1)</span>
-                  <em>
-(Qualification process flow)                  </em>
+(QUALIFICATION Stop process)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
+          </div> <!-- suite-Default_suite-class-failed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\manoj.ghadei\AppData\Local\Temp\testng-eclipse-1820690544\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\manoj.ghadei\AppData\Local\Temp\testng-eclipse--632469396\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -164,7 +213,7 @@
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test thread-count=&quot;5&quot; verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.QualFlowVRT.testcases.HitNTrialTests&quot;/&gt;
+      &lt;class name=&quot;com.QualFlowVRT.testcases.QualificationProcessTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -192,7 +241,7 @@
               <span class="test-group-name">Regression</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">QUAL001</span>
+                <span class="method-in-group-name">QUAL_STOP</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -212,20 +261,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'QUAL001')
-data.setCell(0, 2, 'com.QualFlowVRT.testcases.HitNTrialTests')
-data.setCell(0, 3, 13814);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'QUAL001')
-data.setCell(1, 2, 'com.QualFlowVRT.testcases.HitNTrialTests')
-data.setCell(1, 3, 13712);
+data.setCell(0, 1, 'QUAL_STOP')
+data.setCell(0, 2, 'com.QualFlowVRT.testcases.QualificationProcessTest')
+data.setCell(0, 3, 291908);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 27 seconds</span>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -251,38 +296,28 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.QualFlowVRT.testcases.HitNTrialTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.QualFlowVRT.testcases.QualificationProcessTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">PreSetup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">Setup</span>
-                <span class="method-start">963 ms</span>
+                <span class="method-start">1146 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">QUAL001(1.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test1)</span>
-                <span class="method-start">9258 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">QUAL_STOP(10, 1, 111111, Asset01, test, 10.17.18.109, Test1, 2, qualstart-1)</span>
+                <span class="method-start">13136 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">Teardown([TestResult name=QUAL001 status=SUCCESS method=HitNTrialTests.QUAL001(java.lang.String, java.lang.St...)</span>
-                <span class="method-start">22972 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">Setup</span>
-                <span class="method-start">23009 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">QUAL001(2.0, 1, 111111, Asset01, setup-1, 10.17.18.61, Test1, 1, A-Asset-Test2)</span>
-                <span class="method-start">28590 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">Teardown([TestResult name=QUAL001 status=SUCCESS method=HitNTrialTests.QUAL001(java.lang.String, java.lang.St...)</span>
-                <span class="method-start">42405 ms</span>
+                <span class="method-name">Teardown([TestResult name=QUAL_STOP status=FAILURE method=QualificationProcessTest.QUAL_STOP(java.lang.String...)</span>
+                <span class="method-start">305056 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">endReport_releaseMomory</span>
-                <span class="method-start">42444 ms</span>
+                <span class="method-start">305328 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -70,7 +70,7 @@ public class LoginPage extends BaseClass {
 
 	// Enter User ID: {0}")
 	public void EnterUserID(String UID) {
-		//clickOn(MainLoginUID);
+		clickOn(MainLoginUID);
 		ClearText(MainLoginUID);
 		enterText(MainLoginUID, UID);
 	}
