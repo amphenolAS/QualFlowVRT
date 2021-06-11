@@ -402,19 +402,24 @@ public class TestUtilities extends BaseClass {
 		return results;
 	}
 
-	//Clear/Delete all files from a directory/ folder
+	// Clear/Delete all files from a directory/ folder
 	public void DeleteFiles(String fldrPath) {
 		File file = new File(fldrPath);
-		File[] files = file.listFiles();
-		for (File f : files) {
-			if (f.isFile() && f.exists()) {
-				f.delete();
-				//System.out.println("successfully deleted");
-			} else {
-				System.out.println("cant delete a file due to open or error");
+		if (file.isDirectory()) {
+			//System.out.println("Folder is Available  ");
+			File[] files = file.listFiles();
+			for (File f : files) {
+				if (f.isFile() && f.exists()) {
+					f.delete();
+					System.out.println("successfully deleted");
+				} else {
+					System.out.println("can not delete a file due to file is open or error");
+				}
 			}
+		} else {
+			System.out.println("Folder is not available ");
 		}
-	}	
+	} 	
 	
 	// Copy the files from source folder to destination folder
 	public void copyFile(String from, String to) throws IOException {

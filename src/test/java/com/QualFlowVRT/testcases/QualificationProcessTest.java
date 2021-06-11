@@ -67,16 +67,16 @@ public class QualificationProcessTest extends BaseClass {
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
 		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
-		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STARTTest" + ".html", true);
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STARTTest" + ".html", true);
+		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "QualificationStartTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		//System.out.println("Qualification Process Test is in Progress..");
-		//System.out.println("Qualification START Test is in Progress..");
-		System.out.println("Qualification STOP Test is in Progress..");	
+		System.out.println("Qualification START Test is in Progress..");
+		//System.out.println("Qualification STOP Test is in Progress..");	
 		
 	}
 
@@ -269,7 +269,7 @@ public class QualificationProcessTest extends BaseClass {
 		
 	}
 */
-/*	
+	
 	// Qual Start and log out from VRT application
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -370,9 +370,9 @@ public class QualificationProcessTest extends BaseClass {
 		tu.copyFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs", FPath2);
 		
 	}
-*/
 
-	// Qual Stop and log out from VRT application
+
+/*	// Qual Stop and log out from VRT application
 	@Test(groups = { "Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 			description = "QUALIFICATION Stop process")
 	public void QUAL_STOP(String RunNo, String UID, String PW, String Aname, String Sname, String BSIP, 
@@ -464,5 +464,5 @@ public class QualificationProcessTest extends BaseClass {
 		sa.assertAll();
 		
 	}
-	
+	*/
 }
