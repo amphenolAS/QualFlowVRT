@@ -76,14 +76,7 @@ public class QualificationProcessTest extends BaseClass {
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
 		//System.out.println("Qualification Process Test is in Progress..");
 		//System.out.println("Qualification START Test is in Progress..");
-		System.out.println("Qualification STOP Test is in Progress..");
-		
-		//Deleting/CLearing the log files present in the C-Drive comlog folder
-        String path1 = "C:\\DataFiles\\COMMLog";
-        tu.DeleteFiles(path1);
-        //Deleting/Clearing the log files present in the App DataFiles folder
-        String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
-        tu.DeleteFiles(path2);		
+		System.out.println("Qualification STOP Test is in Progress..");	
 		
 	}
 
@@ -139,6 +132,14 @@ public class QualificationProcessTest extends BaseClass {
 
 		extentTest = extent.startTest("Qualification process flow");
 		SoftAssert sa = new SoftAssert();
+		
+				//Deleting/CLearing the log files present in the C-Drive comlog folder
+        String path1 = "C:\\DataFiles\\COMMLog";
+        tu.DeleteFiles(path1);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(path2);
+        
 		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
@@ -280,6 +281,13 @@ public class QualificationProcessTest extends BaseClass {
 		extentTest = extent.startTest("Starting a Qualification study");
 		SoftAssert sa = new SoftAssert();
 		
+				//Deleting/CLearing the log files present in the C-Drive comlog folder
+        String path1 = "C:\\DataFiles\\COMMLog";
+        tu.DeleteFiles(path1);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(path2);
+        
 		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
@@ -373,6 +381,13 @@ public class QualificationProcessTest extends BaseClass {
 		extentTest = extent.startTest("QUALIFICATION Stop process");
 		SoftAssert sa = new SoftAssert();
 		
+		//Deleting/CLearing the log files present in the C-Drive comlog folder
+        String path1 = "C:\\DataFiles\\COMMLog";
+        tu.DeleteFiles(path1);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(path2);	
+        
 		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
@@ -411,14 +426,8 @@ public class QualificationProcessTest extends BaseClass {
 		assetDetailsPage.click_QualTile();
 		System.out.println("Moved to Qual tile of the targeted Asset");
 		assetDetailsPage.click_QualListPanel();
-		// sa.assertEquals(assetDetailsPage.qualTile_countdata(), "1", "Fail: Qualtile
-		// is not displaying the count");
-		// System.out.println(assetDetailsPage.qual_StudyFile_Comments_txt());
-		//sa.assertEquals(assetDetailsPage.qual_StudyFile_Comments_txt(), StudySaveComment,
-		//		"Fail: comment  is not displaying in the qual studyfile");
 		RWFileSelctionPage = assetDetailsPage.Select_QualFile(StudySaveComment);
 		System.out.println("Selected the Targeted Qual file under the Asset "+Aname+" details Page for report creation");
-		//RWFileSelctionPage = assetDetailsPage.Click_GenerateReportsBtn_RWpage();
 		System.out.println("Moved to RW file selection Page");
 		RWFileSelctionPage.click_ExportToExcelBtn();
 		Thread.sleep(2000);
