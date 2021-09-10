@@ -6,11 +6,8 @@
 package com.QualFlowVRT.testcases;
 
 import java.io.FileNotFoundException;
-
 import javax.swing.JOptionPane;
-
 import org.testng.TestNG;
-
 import com.QualFlowVRT.Listners.ExtentReporterNG;
 
 public class testRunner {
@@ -19,8 +16,13 @@ public class testRunner {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws FileNotFoundException {		
-		JOptionPane.showMessageDialog(null, "Please ensure the WinAppDriver.exe is launched present "
-				+ "at the location- C:\\Program Files (x86)\\Windows Application Driver", "InfoBox: Alert!", JOptionPane.INFORMATION_MESSAGE);
+		int option = JOptionPane.showConfirmDialog(null, "Did you launch the WinAppDriver.exe? " + "\r\n"
+				+ "Continue by clicking Yes, else click No to stop the process and relaunch WinAppDriver.exe. "
+				+ "\r\n" + "One can fine it at the location- C:\\\\Program Files (x86)\\\\Windows Application Driver.", "Alert!!!",
+				JOptionPane.YES_NO_OPTION);
+		if (option == 1) {
+			System.exit(1);
+		}
 		JOptionPane.showMessageDialog(null, "For App UID & PW,which Asset & Setup Name to select, "
 				+ "BaseStation IP address, SOP data, Study time in Minutes & Study save comment, "
 				+ "Please update the excel sheet provided with this exe", "InfoBox: Alert!", JOptionPane.INFORMATION_MESSAGE);
