@@ -6,8 +6,8 @@
       <class name="com.QualFlowVRT.testcases.QualificationProcessTest">
         <methods>
           <include name="Setup"/>
-          <include name="QUAL001"/>
           <include name="PreSetup"/>
+          <include name="QUAL_STOP"/>
           <include name="endReport_releaseMomory"/>
           <include name="Teardown"/>
         </methods>

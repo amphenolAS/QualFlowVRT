@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.QualFlowVRT.base.BaseClass;
 import com.QualFlowVRT.utility.TestUtilities;
+import com.QualFlowVRT.pages.QualificationPage;
 
 public class ProgramLoggersPage extends BaseClass {
 
@@ -65,13 +66,13 @@ public class ProgramLoggersPage extends BaseClass {
 	}
 
 	// Click the Qualification button to move to Qual page after all loggers are
-	// programmed
+/*	// programmed
 	public QualificationPage click_nextbtn(String destination) throws IOException, InterruptedException {
 		boolean QualBtnEnableState1 = driver.findElementByAccessibilityId("NextButton").isEnabled();
 		System.out.println("Qualification Next button enable state1: " + QualBtnEnableState1);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		while (QualBtnEnableState1 == false) {
-			Thread.sleep(10000);
+			Thread.sleep(30000);
 
 			try {
 				click_ExcludeLoggersandContinue(destination);
@@ -80,7 +81,7 @@ public class ProgramLoggersPage extends BaseClass {
 				System.out.println("Continue with Missing Sample alert not displayed");
 			}
 
-			boolean QualBtnEnableState2 = driver.findElementByName("Qualification").isEnabled();
+			boolean QualBtnEnableState2 = driver.findElementByAccessibilityId("NextButton").isEnabled();
 			System.out.println("Qualification Next button enable state 2: " + QualBtnEnableState2);
 			if (QualBtnEnableState2 == true) {
 				break;
@@ -88,7 +89,40 @@ public class ProgramLoggersPage extends BaseClass {
 		}
 
 		clickOn(NextButton);
-		Thread.sleep(7000);
+		Thread.sleep(10000);
 		return new QualificationPage();
 	}
+	
+	*/
+    public boolean waitForElementEnabled() {
+        boolean flag = false;
+            try {
+                        flag = driver.findElementByAccessibilityId("NextButton").isEnabled();
+            } catch (Exception e) {
+              System.out.println("LOGGED OUT");
+            }
+                        return flag;
+        }
+
+
+	
+    public QualificationPage click_nextbtn(String destination) throws IOException, InterruptedException {
+
+        while (!waitForElementEnabled()) {
+               Thread.sleep(5000);
+               System.out.println("TESTT programloggers");
+
+               try {
+            	   click_ExcludeLoggersandContinue(destination);
+
+            	   } catch (Exception e) {
+            	   System.out.println("Continue with Missing Sample alert not displayed");
+            	   }
+            	   
+   
+        }
+        clickOn(NextButton);
+        Thread.sleep(2000);
+        return new QualificationPage();
+ }
 }

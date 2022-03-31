@@ -92,6 +92,8 @@ public class QualificationPage extends BaseClass {
 	// Method to dynamically handle the wait time of the logger status popup
 	public void handle_ExcludelgrPopup1(String destination) throws IOException, InterruptedException {
 		boolean ExcludeLoggersPopup_Displayed = driver.findElementByAccessibilityId("Popup Window").isEnabled();
+		//boolean ExcludeLoggersPopup_Displayed = driver.findElementByAccessibilityId("LiveLoggerStatusPageTitle").isEnabled();
+	
 		if (ExcludeLoggersPopup_Displayed) {
 			Thread.sleep(1000);
 			tu.capture_Screenshot(driver, "ExcludelgrPopup_QualificationPage", destination);
@@ -100,6 +102,26 @@ public class QualificationPage extends BaseClass {
 			Thread.sleep(2000);
 		}
 	}
+	
+	/* click on exclude & continue button
+	 * 
+	 */
+	
+	
+
+	public void click_ExcludeAndcontinue(String destination) throws InterruptedException, IOException {
+		boolean ExcludeLoggersandContinueBtn = driver.findElementByAccessibilityId("skipButton")
+				.isEnabled();
+		if (ExcludeLoggersandContinueBtn) {
+			Thread.sleep(2000);
+			tu.capture_Screenshot(driver, "ExcludeLoggersandContinue_ProgramLoggersPage", destination);
+			clickOn(driver.findElementByAccessibilityId("skipButton"));
+			Thread.sleep(2000);
+		}
+	}
+
+	
+	
 
 	// Method to dynamically handle the wait time of the logger status popup to go
 	// away during Qual Stop
@@ -110,9 +132,9 @@ public class QualificationPage extends BaseClass {
 				System.out.println(
 						"Logger Status popup still displayed in the " + "Qual Page during the Qual Stop process...");
 				try {
-					handle_ExcludelgrPopup1(destination);
+					click_ExcludeAndcontinue(destination);
 				} catch (Exception e) {
-					System.out.println("Exclude Logger(s) and Continue pop up not displayed...");
+					System.out.println("Exclude and Continue pop up not displayed...");
 				}
 			}
 

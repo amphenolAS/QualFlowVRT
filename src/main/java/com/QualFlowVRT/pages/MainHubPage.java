@@ -26,9 +26,9 @@ public class MainHubPage extends BaseClass {
 
 	private void initElements() {
 		// Main Hub Page Page Element definition
-		MainUILoggedinUserTitle = driver.findElementByAccessibilityId("UserDesignationTextBlock");
-		MainUILoggedinUserName = driver.findElementByAccessibilityId("UserNameTextBlock");
-		MainUIAdminTile = driver.findElementByName("Admin");
+	MainUILoggedinUserTitle = driver.findElementByAccessibilityId("UserDesignationTextBlock");
+	 MainUILoggedinUserName = driver.findElementByAccessibilityId("UserNameTextBlock");
+		//MainUIAdminTile = driver.findElementByName("Admin");
 		AssetCountInfoInAsstTile = driver.findElementByAccessibilityId("TitleCountTextBlock");
 		MainUIPageTitle = driver.findElementByName("ValProbe RT System");
 		MainUIEquipmentTitle = driver.findElementByName("Equipment");

@@ -3,6 +3,7 @@ package com.QualFlowVRT.testcases;
 import java.awt.AWTException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -81,7 +82,10 @@ public class HitNTrialTests extends BaseClass {
         String path1 = "C:\\DataFiles\\COMMLog";
         tu.DeleteFiles(path1);
         //Deleting/Clearing the log files present in the App DataFiles folder
+        
         String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        List pathx =   tu.get_fileNamesList(path2);
+        System.out.println(pathx);
         tu.DeleteFiles(path2);		
 		
 	}
@@ -149,6 +153,7 @@ public class HitNTrialTests extends BaseClass {
 		tu.create_Folder(FPath2);
 				
 		MainHubPage = LoginPage.Login(UID, PW);
+		
 		assetHubPage = MainHubPage.Click_AssetTile2();
 		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
 		Thread.sleep(2000);
@@ -187,7 +192,7 @@ public class HitNTrialTests extends BaseClass {
 		MappingSensorsPage.sensorAutoMao_operation();
 		ProgramLoggersPage = MappingSensorsPage.click_NextButton_withUnmappedSensors();
 		System.out.println("Moved to Program loggers screen...");
-		QualificationPage = ProgramLoggersPage.click_nextbtn(FPath2);
+	//	QualificationPage = ProgramLoggersPage.click_nextbtn(FPath2);
 		System.out.println("Moved to Qualification Page...");
 		QualificationPage.click_Start_qualbtn();
 		UserLoginPopup(UID, PW);
@@ -458,6 +463,7 @@ public class HitNTrialTests extends BaseClass {
 		
 		sa.assertAll();
 		
-	}*/
+	}
+	*/
 	
 }

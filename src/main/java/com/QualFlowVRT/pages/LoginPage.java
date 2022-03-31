@@ -12,6 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.QualFlowVRT.base.BaseClass;
 import com.QualFlowVRT.utility.TestUtilities;
+import com.QualFlowVRT.pages.MainHubPage;
+import com.QualFlowVRT.pages.UserManagementPage;
 
 //import io.qameta.allure.Step;
 
@@ -29,7 +31,7 @@ public class LoginPage extends BaseClass {
 		// LoginPage Page Element definition
 		ProductName = driver.findElementByName("ValProbe RT System");
 		MainLoginUID = driver.findElementByAccessibilityId("LoginIDTextBox");
-		MainLoginPW = driver.findElementByAccessibilityId("PasswordTextBox");
+		MainLoginPW = driver.findElementByAccessibilityId("PasswordTxtBox");
 		MainLoginBtn = driver.findElementByAccessibilityId("LoginButton");
 		MainLoginCnclBtn = driver.findElementByAccessibilityId("CancelButton");
 	}
@@ -55,12 +57,17 @@ public class LoginPage extends BaseClass {
 
 	// Launch of Main App with Login page...")
 	public boolean Is_VRTAppLoginScreen_Displayed() {
-		return MainLoginUID.isDisplayed();
+		return IsElementEnabledStatus(MainLoginUID);
 	}
 
 	// Check the contents of the Main Login screen")
 	public String AppName() {
 		return FetchText(ProductName);
+	}
+	
+	// Click on the Product Name content
+	public void clickOn_AppName() {
+		clickOn(ProductName);
 	}
 
 	// Verify the User ID field presence...")
@@ -70,7 +77,7 @@ public class LoginPage extends BaseClass {
 
 	// Enter User ID: {0}")
 	public void EnterUserID(String UID) {
-		clickOn(MainLoginUID);
+		//clickOn(MainLoginUID);
 		ClearText(MainLoginUID);
 		enterText(MainLoginUID, UID);
 	}
@@ -86,10 +93,16 @@ public class LoginPage extends BaseClass {
 	}
 
 	// Enter User PW: {0}")
-	public void EnterUserPW(String PW) {
-		ClearText(MainLoginPW);
-		enterText(MainLoginPW, PW);
-	}
+		public void EnterUserPW(String PW) throws InterruptedException {
+			
+		//	ClearText(MainLoginPW);
+			Thread.sleep(1000);
+			//PasswordTxtBox
+			clickOn(MainLoginPW);
+			WebElement Mainpwd1 = driver.findElementByAccessibilityId("PasswordTxtBox");
+			enterText(Mainpwd1, PW);
+		}
+
 
 	// Get the User PW field data...")
 	public String GetTextUserPWField() {
@@ -122,7 +135,7 @@ public class LoginPage extends BaseClass {
 	// Click Login Btn...")
 	public void ClickLoginBtn() throws InterruptedException {
 		clickOn(MainLoginBtn);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 	}
 
 	// click login button to navigate to MainHubPage
@@ -164,6 +177,14 @@ public class LoginPage extends BaseClass {
 
 		return new MainHubPage();
 	}
+	
+	// Click New PW Save Btn without moving to Home Page")
+	public void ClickNewPW_OkBtn() throws InterruptedException, IOException {
+		WebElement NewPWSaveBtn = driver.findElementByName("OK");
+		clickOn(NewPWSaveBtn);
+		Thread.sleep(1000);
+	}
+
 
 	// Verify the CancelBtnPresence...")
 	public boolean CancelBtnPresence() {
@@ -205,13 +226,25 @@ public class LoginPage extends BaseClass {
 
 		return new MainHubPage();
 	}
+	
+	public void ChangeNewPW_getalertmsg(String UID, String PW, String NPW) throws InterruptedException, IOException {
+		EnterUserID(UID);
+		EnterUserPW(PW);
+		ClickLoginBtn();
+		enterNewPW(NPW);
+		enterConfNewPW(NPW);
+		ClickNewPW_OkBtn();
+	}
+
 
 //Login method for User OTHER THAN Kaye/411...")
 	public MainHubPage Login(String UID, String PW) throws InterruptedException, IOException {
 		EnterUserID(UID);
 		EnterUserPW(PW);
+		
+		Thread.sleep(3000);
 		ClickLoginBtn();
-		Thread.sleep(1000);
+		ClickLoginBtn();
 
 		return new MainHubPage();
 	}
@@ -233,6 +266,7 @@ public class LoginPage extends BaseClass {
 		// Thread.sleep(1000);
 	}
 
+
 	// Login method using Kaye/411")
 	public UserManagementPage DefaultLogin() throws InterruptedException, IOException {
 		MainLoginUID.click();
@@ -240,11 +274,29 @@ public class LoginPage extends BaseClass {
 		MainLoginUID.sendKeys("Kaye");
 		MainLoginPW.sendKeys("411");
 		MainLoginBtn.click();
-		Thread.sleep(1000);
-
+		Thread.sleep(4000);
+		clickOnLDAP_cancelbtn();
+		clickOn_UserManagementTab();
 		return new UserManagementPage();
+		
+	}	
+	
+	public void clickOnLDAP_cancelbtn() {
+		driver.switchTo().activeElement();
+		WebElement cancelbtn = driver.findElementByAccessibilityId("btnCancel");
+		clickOn(cancelbtn);
 	}
-
+	
+	
+	
+	//Click on UserManagementButton
+	
+	public void clickOn_UserManagementTab() {
+		WebElement UserManagementButton = driver.findElementByAccessibilityId("UserManagementButton");
+		clickOn(UserManagementButton);
+	}
+	
+	
 	// Login method for User OTHER THAN Kaye/411...")
 	public void LoginEntry(String UID, String PW) throws InterruptedException {
 		
@@ -290,26 +342,17 @@ public class LoginPage extends BaseClass {
 		MainLoginBtn.click();
 	}
 
-	// Alert message for entering deleted users credentials
-	public String Deleteduser_AlertMsg() {
-		WebElement LogMsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(LogMsg);
+	// click on Button0
+	public void cick_ok() {
+		WebElement ok = driver.findElementByAccessibilityId("Button0");
+		clickOn(ok);
 	}
 
-	public String AlertMsg() {
-		WebElement LogMsg = driver.findElementByAccessibilityId("displayMessageTextBlock");
-		return FetchText(LogMsg);
-	}
-
-	public String UserBlocked_PopUp_Msg() {
-		WebElement LogMsg = driver.findElementByAccessibilityId("Content_String");
-		return LogMsg.getAttribute("Name");
-	}
 
 	// Get the Sw version info from the About window on clicking About icon of the
 	// bottom apps bar
 	public String get_SWVersion_About_Text() throws InterruptedException {
-		clickOn(ProductName);
+		clickOn_AppName();
 		Actions ac = new Actions(driver);
 		ac.contextClick().build().perform();
 		// ac.contextClick().build().perform();
@@ -320,9 +363,16 @@ public class LoginPage extends BaseClass {
 		WebElement SWVersion_About_info = driver.findElementByAccessibilityId("SoftwareVersion");
 
 		String[] SWVer = FetchText(SWVersion_About_info).split(":");
-		clickOn(ProductName);
-		clickOn(ProductName);
 		return SWVer[1];
+	}
+	
+	// Click the login button repetitively based on the preference setting for the
+	// User to be disabled
+	public void click_loginBtn_Loginfail(int val) throws InterruptedException {
+		for (int i = 0; i <= val; i++) {
+			clickOn(MainLoginBtn);
+			Thread.sleep(500);
+		}
 	}
 
 }

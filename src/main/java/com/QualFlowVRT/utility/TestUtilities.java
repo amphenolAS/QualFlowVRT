@@ -246,8 +246,7 @@ public class TestUtilities extends BaseClass {
 		String dateName = new SimpleDateFormat("yyyy_MM_dd_hhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		// after execution, you could see a folder "FailedTestsScreenshots"
-		// under src folder
+	
 		String path = destination +"/"+ screenshotName + "_"+ dateName + ".png";
 		File finalDestination = new File(path);
 		FileUtils.copyFile(source, finalDestination);
@@ -387,7 +386,7 @@ public class TestUtilities extends BaseClass {
 	// Method to retrieve all the file names present in any folder
 	public List<String> get_fileNamesList(String folderpath) {
 		List<String> results = new ArrayList<String>();
-
+		
 		// enter the folder path
 		// String folderpath = System.getProperty("user.dir") +
 		// "\\src\\test\\resources\\TestData\\" + foldername;
@@ -405,16 +404,24 @@ public class TestUtilities extends BaseClass {
 	//Clear/Delete all files from a directory/ folder
 	public void DeleteFiles(String fldrPath) {
 		File file = new File(fldrPath);
+		if (file.isDirectory()) {
+            System.out.println("Folder is Available  ");
 		File[] files = file.listFiles();
 		for (File f : files) {
 			if (f.isFile() && f.exists()) {
 				f.delete();
-				//System.out.println("successfully deleted");
+				System.out.println("successfully deleted");
 			} else {
-				System.out.println("cant delete a file due to open or error");
+				System.out.println("can not delete a file due to open or error");
 			}
 		}
+		} else {
+		System.out.println("Folder is not available ");
+		}
 	}	
+	
+	
+	
 	
 	// Copy the files from source folder to destination folder
 	public void copyFile(String from, String to) throws IOException {

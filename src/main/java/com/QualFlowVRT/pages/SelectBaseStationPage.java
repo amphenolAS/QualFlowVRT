@@ -24,7 +24,7 @@ public class SelectBaseStationPage extends BaseClass {
 	private void initializeEelements() {
 		SelectBaseStationTitle = driver.findElementByName("Select Base Station");
 		DiscoverIOBoxButton = driver.findElementByAccessibilityId("DiscoverIOBoxButton");
-		btnIpConfigChange = driver.findElementByAccessibilityId("btnIpConfigChange");
+		//btnIpConfigChange = driver.findElementByAccessibilityId("btnIpConfigChange");
 		Connect_Btn = driver.findElementByAccessibilityId("btnConnect");
 		BS_IPAddress = driver.findElementByAccessibilityId("txtIOBox");
 		Add_btn = driver.findElementByAccessibilityId("btnIOIPconnect");

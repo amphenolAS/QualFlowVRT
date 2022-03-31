@@ -1,8 +1,10 @@
 package com.QualFlowVRT.testcases;
 
 import java.awt.AWTException;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -66,26 +68,21 @@ public class QualificationProcessTest extends BaseClass {
 	@BeforeClass
 	public void PreSetup() throws InterruptedException, IOException, ParseException, AWTException {
 
-		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "QualificationProcessTest" + ".html", true);
 		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STARTTest" + ".html", true);
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
+		//extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ER_" + "Qualification_STOPTest" + ".html", true);
 		extent.addSystemInfo("TestSuiteName", "QualificationStartTest");
 		extent.addSystemInfo("BS Version", prop.getProperty("BS_Version"));
 		extent.addSystemInfo("Lgr Version", prop.getProperty("Lgr_Version"));
 		extent.addSystemInfo("ScriptVersion", prop.getProperty("ScriptVersion"));
 		extent.addSystemInfo("User Name", prop.getProperty("User_Name1"));
-		//System.out.println("Qualification Process Test is in Progress..");
+		System.out.println("Qualification Process Test is in Progress..");
 		//System.out.println("Qualification START Test is in Progress..");
-		System.out.println("Qualification STOP Test is in Progress..");
+		//System.out.println("Qualification STOP Test is in Progress..");
 		
-		//Deleting/CLearing the log files present in the C-Drive comlog folder
-        String path1 = "C:\\DataFiles\\COMMLog";
-        tu.DeleteFiles(path1);
-        //Deleting/Clearing the log files present in the App DataFiles folder
-        String path2 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
-        tu.DeleteFiles(path2);		
 		
 	}
+	
 
 	// @AfterClass-All the tests are conducted
 	@AfterClass
@@ -101,7 +98,9 @@ public class QualificationProcessTest extends BaseClass {
 		LaunchApp("Kaye.ValProbeRT_racmveb2qnwa8!App");
 		Thread.sleep(500);
 		LoginPage = new LoginPage();
+		
 		extent.addSystemInfo("VRT Version", LoginPage.get_SWVersion_About_Text());
+		Thread.sleep(3000);
 
 	}
 
@@ -129,8 +128,9 @@ public class QualificationProcessTest extends BaseClass {
 		driver.quit();
 	}
 
+	
 	// Qualification Cases
-/*	// QUALIFICATION START-STOP process for a 10 mnt study
+   // QUALIFICATION START-STOP process for a 10 mnt study
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
 					description = "Qualification process flow")
@@ -139,17 +139,30 @@ public class QualificationProcessTest extends BaseClass {
 
 		extentTest = extent.startTest("Qualification process flow");
 		SoftAssert sa = new SoftAssert();
+		String path1 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(path1);
+        Thread.sleep(2000);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String path2 = "C:\\DataFiles\\COMMLog";
+        System.out.println(path2);
+        List<String> pathx = tu. get_fileNamesList(path2);
+        System.out.println(pathx);
+        tu.DeleteFiles(path2);	
+		
 		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
-		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
-		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
+		  //tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
+		 //Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
 		//String FPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() 
 		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
+				
 		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
 		//System.out.println(Path);
 		tu.create_Folder(FPath2);
-				
+	
 		MainHubPage = LoginPage.Login(UID, PW);
-		assetHubPage = MainHubPage.Click_AssetTile2();
+		
+	   assetHubPage = MainHubPage.Click_AssetTile2();
+	 
 		assetDetailsPage = assetHubPage.click_assetTile2(Aname);
 		Thread.sleep(2000);
 		assetDetailsPage.click_SetupTile();
@@ -174,6 +187,7 @@ public class QualificationProcessTest extends BaseClass {
 		
 		try {
 			SelectLoggersPage.click_AddEqp(FPath2);
+			Thread.sleep(1000);
 			SelectLoggersPage.click_YesTo_BatteryAlert(FPath2);
 		} catch (Exception e) {
 			System.out.println("No Equipment addition alert message displayed");
@@ -266,9 +280,9 @@ public class QualificationProcessTest extends BaseClass {
 		
 		sa.assertAll();
 		
-	}
-*/
-/*	
+		}
+/*
+	
 	// Qual Start and log out from VRT application
 	@Test(groups = {
 			"Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -279,7 +293,15 @@ public class QualificationProcessTest extends BaseClass {
 			
 		extentTest = extent.startTest("Starting a Qualification study");
 		SoftAssert sa = new SoftAssert();
-		
+		String pathA = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(pathA);
+        Thread.sleep(2000);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String pathB = "C:\\DataFiles\\COMMLog";
+        System.out.println(pathB);
+        List<String> pathx1 = tu. get_fileNamesList(pathB);
+        System.out.println(pathx1);
+        tu.DeleteFiles(pathB);	
 		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
@@ -327,7 +349,7 @@ public class QualificationProcessTest extends BaseClass {
 		MappingSensorsPage.sensorAutoMao_operation();
 		ProgramLoggersPage = MappingSensorsPage.click_NextButton_withUnmappedSensors();
 		System.out.println("Moved to Program loggers screen...");
-		QualificationPage = ProgramLoggersPage.click_nextbtn(FPath2);
+	//	QualificationPage = ProgramLoggersPage.click_nextbtn(FPath2);
 		System.out.println("Moved to Qualification Page...");
 		QualificationPage.click_Start_qualbtn();
 		UserLoginPopup(UID, PW);
@@ -362,7 +384,7 @@ public class QualificationProcessTest extends BaseClass {
 		tu.copyFile("C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs", FPath2);
 		
 	}
-*/
+	
 
 	// Qual Stop and log out from VRT application
 	@Test(groups = { "Regression" }, dataProvider = "QUAL001", dataProviderClass = QualificationUtility.class, 
@@ -372,7 +394,15 @@ public class QualificationProcessTest extends BaseClass {
 			throws InterruptedException, IOException, AWTException {
 		extentTest = extent.startTest("QUALIFICATION Stop process");
 		SoftAssert sa = new SoftAssert();
-		
+		String pathL1 = "C:\\Program Files (x86)\\Kaye\\Kaye AVS Service\\DataFiles\\Logs";
+        tu.DeleteFiles(pathL1);
+        Thread.sleep(2000);
+        //Deleting/Clearing the log files present in the App DataFiles folder
+        String pathL2 = "C:\\DataFiles\\COMMLog";
+        System.out.println(pathL2);
+        List<String> pathY1 = tu. get_fileNamesList(pathL2);
+        System.out.println(pathY1);
+        tu.DeleteFiles(pathL2);	
 		System.out.println("++++++++++++Run # "+RunNo+" Started at "+tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss")+"++++++++++++");
 		//tu.get_CurrentDateandTimeStamp2("dd-MM-yyyy_HH:mm:ss");
 		//Create a folder in the My Documents folder for the current run to add log files and Fail snapshots if any
@@ -380,8 +410,7 @@ public class QualificationProcessTest extends BaseClass {
 		//		+"\\" +Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
 		String FPath2 = System.getProperty("user.home") + "\\Documents"+"\\" +RunNo+"-"+Aname+"_"+Sname+"_"+tu.get_CurrentDateandTimeStamp2("ddMMyyyy-HHmmss");
 		//System.out.println(Path);
-		tu.create_Folder(FPath2);
-		
+		tu.create_Folder(FPath2);	
 		MainHubPage = LoginPage.Login(UID, PW);
 		SelectBaseStationPage = MainHubPage.clickonDiscoverTile();
 		SelectBaseStationPage.Enter_BS_IPAddress(BSIP);
@@ -455,5 +484,6 @@ public class QualificationProcessTest extends BaseClass {
 		sa.assertAll();
 		
 	}
+*/
 	
 }
